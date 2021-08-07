@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\Category;
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,7 +23,7 @@ class Item
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne (targetEntity="App\Entity\Category", inversedBy="items")
      */
     private $category;
 
@@ -84,12 +84,12 @@ class Item
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?object
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): self
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
 
