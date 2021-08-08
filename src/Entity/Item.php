@@ -53,7 +53,7 @@ class Item
     private $date_modife;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne (targetEntity="App\Entity\User", inversedBy="items")
      */
     private $author;
 
@@ -134,14 +134,14 @@ class Item
 
     public function getDateCreated(): ?string
     {
-        return $this->date_created;
+         return $this->date_created;
     }
 
     public function setDateCreated(string $date_created): self
     {
-        $this->date_created = $date_created;
 
-        return $this;
+        $this->$date_created = $date_created;
+        return $date_created;
     }
 
     public function getDateModife(): ?string
@@ -152,16 +152,15 @@ class Item
     public function setDateModife(string $date_modife): self
     {
         $this->date_modife = $date_modife;
-
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): ?object
     {
         return $this->author;
     }
 
-    public function setAuthor(string $author): self
+    public function setAuthor(User $author): self
     {
         $this->author = $author;
 
@@ -191,4 +190,7 @@ class Item
 
         return $this;
     }
+
+
+
 }

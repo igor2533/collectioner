@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use App\Entity\Items;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -20,6 +22,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Item", mappedBy="user")
+     */
+    private $items;
+
+
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -105,6 +114,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->email;
+    }
+
 
     /**
      * Returning a salt is only needed, if you are not using a modern

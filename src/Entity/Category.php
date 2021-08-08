@@ -45,10 +45,7 @@ class Category
      */
     private $image;
 
-    public function __construct()
-    {
-        $this->items = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
@@ -83,16 +80,22 @@ class Category
     public function addItem(Item $item):self
     {
 
+
         if(!$this->items->contains($item)) {
             $this->items[] = $item;
             $item->setCategory($this);
+
+
         }
         return $this;
 
 
     }
 
-
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     public function __toString()
     {

@@ -13,12 +13,16 @@ class ItemCrudController extends AbstractCrudController
 
     public static function getEntityFqcn(): string
     {
+
         return Item::class;
     }
 
 
     public function configureFields(string $pageName): iterable
     {
+
+
+
         return [
 
             TextField::new('title'),
@@ -26,9 +30,9 @@ class ItemCrudController extends AbstractCrudController
              AssociationField::new('category'),
             TextField::new('status'),
             TextField::new('likes'),
-            TextField::new('date_created'),
-            TextField::new('date_modife'),
-            TextField::new('author'),
+            //TextField::new('date_created')->setValue('DASSS')->setRequired((false)),
+            //TextField::new('date_modife')->setValue('dddd')->setRequired(false),
+            AssociationField::new('author'),
             TextField::new('year'),
             TextField::new('slug'),
 
