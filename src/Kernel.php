@@ -36,12 +36,5 @@ class Kernel extends BaseKernel
         }
     }
 
-//    public function registerBundles()
-//    {
-//        $bundles = [
-//            // ...
-//            new Http\HttplugBundle\HttplugBundle(), // If you require the php-http/httplug-bundle package.
-//            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-//        ];
-//    }
+
 }

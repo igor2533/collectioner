@@ -1,0 +1,8 @@
+easy_admin:
+  entities:
+    Item:
+      class: App\Entity\Item
+      new:
+        fields:
+          - 'title'
+          - {property: 'image', type: 'file'}

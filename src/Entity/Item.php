@@ -31,7 +31,10 @@ class Item
      * @ORM\Column(type="string", length=255)
      */
     private $status;
-
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -67,6 +70,7 @@ class Item
      */
     private $slug;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -83,6 +87,19 @@ class Item
 
         return $this;
     }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
 
     public function getCategory(): ?object
     {
@@ -140,8 +157,8 @@ class Item
     public function setDateCreated(string $date_created): self
     {
 
-        $this->$date_created = $date_created;
-        return $date_created;
+        $this->date_created = $date_created;
+        return $this;
     }
 
     public function getDateModife(): ?string
@@ -183,12 +200,19 @@ class Item
     {
         return $this->slug;
     }
-
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
     public function setSlug(string $slug): self
     {
+
+
+
         $this->slug = $slug;
 
-        return $this;
+
+        return  $this;
     }
 
 

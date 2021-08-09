@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Item;
 use App\Entity\Category;
+use App\Entity\User;
 use App\Controller\Admin\ItemCrudController;
 
 class DashboardController extends AbstractDashboardController
@@ -19,7 +20,8 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+
+       return parent::index();
     }
 
     public function configureDashboard(): Dashboard
@@ -33,5 +35,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
        yield MenuItem::linkToCrud('Items', 'fas fa-list', Item::class);
         yield MenuItem::linkToCrud('Category', 'fas fa-list', Category::class);
+        yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
     }
 }

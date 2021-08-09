@@ -1,20 +1,17 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-Это главная
 
-
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-    {% else %}
-        <a href="{{ path('app_login') }}">Login</a>
-        <a href="{{ path('app_register') }}">Register</a>
-    {% endif %}
+<div class="container mons">
 
     {%  for item in items %}
-        {{ item.title }}
+  <div class="col-sm-3">
 
+      <div class="col-sm-12"><a href="/item/{{ item.slug }}"> <img src="/uploads/{{ item.image }}"/></a></div>
+      <div class="col-sm-12"><span> {{ item.title }}</span></div>
+
+  </div>
     {%  endfor %}
-
+</div>
 
 
 {% endblock %}

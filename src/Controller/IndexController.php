@@ -20,6 +20,18 @@ class IndexController extends AbstractController
         ['items' => $items ]);
 
     }
+    public function show(ItemRepository $itemRepository,string $slug, Request $request):Response {
+
+        $item = $itemRepository->findOneBy(array(
+
+            'slug' => $request->get('slug'),
+        ));
+
+
+        return $this->render('view.html.twig',
+            ['item' => $item ]);
+
+    }
 
 
 

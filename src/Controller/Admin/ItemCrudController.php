@@ -3,9 +3,13 @@
 namespace App\Controller\Admin;
 use App\Entity\Item;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+//use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField as ImageFields;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Ausi\SlugGenerator\SlugGenerator;
+
 class ItemCrudController extends AbstractCrudController
 {
 
@@ -30,11 +34,16 @@ class ItemCrudController extends AbstractCrudController
              AssociationField::new('category'),
             TextField::new('status'),
             TextField::new('likes'),
-            //TextField::new('date_created')->setValue('DASSS')->setRequired((false)),
-            //TextField::new('date_modife')->setValue('dddd')->setRequired(false),
+            TextField::new('date_created'),
+            TextField::new('date_modife'),
             AssociationField::new('author'),
             TextField::new('year'),
+
             TextField::new('slug'),
+            ImageFields::new('image')
+                ->setBasePath(' uploads/')
+                ->setUploadDir('public/uploads')->setUploadedFileNamePattern('[randomhash].[extension]')
+                ->setRequired(false),
 
         ];
     }
