@@ -28,8 +28,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $items;
 
-
-
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
@@ -50,6 +52,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+
+        $this->status = $status;
+
+        return $this;
+    }
+//    public function activateStatus() {
+//        $status = 1;
+//        return $this->getStatus()->$status;
+//    }
 
     public function getEmail(): ?string
     {
@@ -92,6 +110,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return array_unique($roles);
     }
+
+
+
+
 
     public function setRoles(array $roles): self
     {

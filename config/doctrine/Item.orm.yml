@@ -1,0 +1,6 @@
+# config/doctrine/Product.orm.yml
+App\Entity\Item:
+  type: entity
+  # ...
+  lifecycleCallbacks:
+    prePersist: ['setCreatedAtValue']

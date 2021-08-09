@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Item{% endblock %}
+
+{% block body %}
+    <h1>Add Item</h1>
+
+    {{ form_start(addItemForm) }}
+    {{ form_row(addItemForm.title) }}
+    {{ form_row(addItemForm.description, {
+        label: 'Description'
+    }) }}
+    {{ form_row(addItemForm.agreeTerms) }}
+
+    <button type="submit" class="btn">Добавить</button>
+    {{ form_end(addItemForm) }}
+{% endblock %}

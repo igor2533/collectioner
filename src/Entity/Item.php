@@ -4,6 +4,8 @@ namespace App\Entity;
 use App\Entity\Category;
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
@@ -28,7 +30,7 @@ class Item
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $status;
     /**
@@ -46,12 +48,14 @@ class Item
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\DateTime()
+     * @ORM\Column(type="datetime")
      */
     private $date_created;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\DateTime()
+     * @ORM\Column(type="datetime")
      */
     private $date_modife;
 
@@ -113,12 +117,12 @@ class Item
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(int $status): self
     {
         $this->status = $status;
 
@@ -149,7 +153,7 @@ class Item
         return $this;
     }
 
-    public function getDateCreated(): ?string
+    public function getDateCreated(): ?\DateTimeInterface
     {
          return $this->date_created;
     }
@@ -161,7 +165,7 @@ class Item
         return $this;
     }
 
-    public function getDateModife(): ?string
+    public function getDateModife(): ?\DateTimeInterface
     {
         return $this->date_modife;
     }
@@ -214,6 +218,30 @@ class Item
 
         return  $this;
     }
+
+
+
+//    public function __construct(string $date_created)
+//    {
+//        $this->date_created= new \DateTime();
+//        //$this->date_modife= new \DateTime();
+//
+//    }
+
+
+//    public function preUpdate()
+//    {
+//        $this->date_modife= new \DateTime();
+//    }
+
+//    public function setCreatedAtValue(): void
+//    {
+//
+//        //$item->setDateCreated(2016-06-12);
+//        $this->date_created= new \DateTime();
+//    }
+
+
 
 
 

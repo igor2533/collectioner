@@ -2,9 +2,12 @@
 
 namespace App\Controller\Admin;
 use App\Entity\Item;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 //use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField as ImageFields;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -32,10 +35,14 @@ class ItemCrudController extends AbstractCrudController
             TextField::new('title'),
             TextEditorField::new('description'),
              AssociationField::new('category'),
-            TextField::new('status'),
-            TextField::new('likes'),
-            TextField::new('date_created'),
-            TextField::new('date_modife'),
+            ChoiceField::new('status')
+                ->setChoices([  'Опубликовано' => '1',
+                        'Не опубликовано' => '0',
+                       ]
+                ),
+
+
+
             AssociationField::new('author'),
             TextField::new('year'),
 
