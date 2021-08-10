@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="container mons">
+
+
+  <div class="col-sm-12 view">
+
+      <div class="col-sm-12"> <img src="/uploads/images/{{ item.image }}"/></div>
+      <div class="col-sm-12"><span> {{ item.title }}</span></div>
+      <div class="col-sm-12"><span> {{ item.author }}</span></div>
+      <div class="col-sm-12"><span> {{ item.dateCreated }}</span></div>
+      <div class="col-sm-12">{{ item.description }}</div>
+      <div class="col-sm-12"><span> {{ item.category }}</span></div>
+  </div>
+
+</div>
+
+
+{% endblock %}
