@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\User;
 use App\Entity\Item;
+use App\Entity\Tag;
 use App\Repository\ItemRepository;
+use App\Repository\CategoryRepository;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,12 +17,35 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
 
-    public function index(ItemRepository $itemRepository):Response {
+    public function index(CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
         $items = $itemRepository->findAll();
+        $categories = $categoryRepository->findAll();
         return $this->render('home.html.twig',
-        ['items' => $items ]);
+        ['items' => $items,
+            'categories' => $categories
+            ]);
 
     }
+    public function category(ItemRepository $itemRepository,CategoryRepository $categoryRepository,string $slug, Request $request):Response {
+
+        $category = $categoryRepository->findOneBy(array(
+
+            'slug' => $request->get('slug'),
+        ));
+         //die($category->getId());
+        $items = $itemRepository->findBy(array(
+            'category' => $category->getId()
+        ));
+
+
+        return $this->render('category-page.html.twig',
+            ['category' => $category,
+                'items' => $items
+                ]);
+
+    }
+
+
     public function show(ItemRepository $itemRepository,string $slug, Request $request):Response {
 
         $item = $itemRepository->findOneBy(array(
@@ -29,9 +55,12 @@ class IndexController extends AbstractController
 
 
         return $this->render('view.html.twig',
-            ['item' => $item ]);
+            ['item' => $item,
+                'tags' => $tags]);
 
     }
+
+
 
 
 

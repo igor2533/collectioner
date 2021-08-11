@@ -3,4 +3,5 @@ twig:
 
 when@test:
     twig:
+        form_themes: ['bootstrap_4_horizontal_layout.html.twig']
         strict_variables: true

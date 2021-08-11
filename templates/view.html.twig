@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-<div class="container mons">
 
 
-  <div class="col-sm-12 view">
 
-      <div class="col-sm-12"> <img src="/uploads/{{ item.image }}"/></div>
-      <div class="col-sm-12"><span> {{ item.title }}</span></div>
-      <div class="col-sm-12"><span> {{ item.author }}</span></div>
+    <div class="row item_single">
 
-      <div class="col-sm-12">{{ item.description }}</div>
-      <div class="col-sm-12"><span> {{ item.category }}</span></div>
-  </div>
+        <div class="col-sm-6 img_div_item">
+            <img src="/uploads/images/{{ item.image }}">
+        </div>
 
-</div>
+        <div class="col-sm-6 content_div_item">
+            <div class="title_item_box_black col-sm-12"><span>{{ item.title }}</span></div>
+            <div class="description_item_box_black col-sm-12">
+                <span>{{ item.description }}</span></div>
+            <div class="date_item_box_black col-sm-12"><span>Опубликовано: {{ item.description }}</span></div>
+            <div class="date_item_box_author col-sm-12"><span>Автор: </span><a href="#">{{ item.author }}</a></div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
 
 
 {% endblock %}

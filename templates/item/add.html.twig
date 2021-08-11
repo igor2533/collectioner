@@ -3,15 +3,50 @@
 {% block title %}Add Item{% endblock %}
 
 {% block body %}
+    <style>
+        .container form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
     <h1>Add Item</h1>
-
+    {% form_theme addItemForm 'foundation_5_layout.html.twig' %}
     {{ form_start(addItemForm) }}
-    {{ form_row(addItemForm.title) }}
-    {{ form_row(addItemForm.description, {
-        label: 'Description'
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(addItemForm) }}
+    </div>
+<div class="form-group">
+    {{ form_row(addItemForm.title,{
+        attr: {'class': 'form-control'}
     }) }}
-    {{ form_row(addItemForm.agreeTerms) }}
+</div>
+<div class="form-group">
+    {{ form_row(addItemForm.description, {
+        label: 'Description',
+        attr: {'class': 'form-control'}
+    }) }}
+</div>
+<div class="form-group">
+    {{ form_row(addItemForm.image,{
+        attr: {'class': 'form-control'}
+    }) }}
+</div>
+    <div class="form-group">
+        {{ form_row(addItemForm.category,{
+            attr: {'class': 'form-control'}
+        }) }}
+    </div>
+<div class="form-group">
+    {{ form_row(addItemForm.agreeTerms,{
+        label: 'Check me out',
+        attr: {'class': 'form-check-input'}
+    }) }}
+</div>
 
-    <button type="submit" class="btn">Добавить</button>
+
+
+<div class="form-group">
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</div>
     {{ form_end(addItemForm) }}
 {% endblock %}

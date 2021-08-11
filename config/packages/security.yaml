@@ -37,5 +37,5 @@ security:
     access_control:
 
          #- { path: ^/api/(post|comment)/\d+$, roles: ROLE_USER }
-         - { path: ^/item, roles: ROLE_USER }
+         - { path: ^/item, roles: ROLE_ADMIN}
          - { path: ^/admin, roles: ROLE_ADMIN }

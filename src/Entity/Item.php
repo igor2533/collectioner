@@ -3,6 +3,7 @@
 namespace App\Entity;
 use App\Entity\Category;
 use App\Repository\ItemRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
@@ -20,7 +21,7 @@ class Item
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title;
 
@@ -30,32 +31,35 @@ class Item
     private $category;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $status;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany   (targetEntity="App\Entity\Tag", inversedBy="items")
+     */
+    private $tag;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $likes;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
-     * @Assert\DateTime()
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $date_created;
 
+
     /**
-     * @Assert\DateTime()
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $date_modife;
 
@@ -64,15 +68,18 @@ class Item
      */
     private $author;
 
+
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $year;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
+
+
 
 
     public function getId(): ?int
@@ -117,6 +124,21 @@ class Item
         return $this;
     }
 
+
+    public function isStatus(){
+        return $this->status;
+    }
+
+    public function enable(){
+        $this->status = 1;
+        return $this->save(false);
+    }
+
+    public function disable(){
+        $this->status = 0;
+        return $this->save(false);
+    }
+
     public function getStatus(): ?int
     {
         return $this->status;
@@ -153,7 +175,7 @@ class Item
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
+    public function getDateCreated(): ?string
     {
          return $this->date_created;
     }
@@ -188,6 +210,28 @@ class Item
         return $this;
     }
 
+    public function getTag(): ?object
+    {
+        return $this->tag;
+    }
+
+    public function setTag(Tag $tag): self
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function getYear(): ?string
     {
         return $this->year;
@@ -204,21 +248,22 @@ class Item
     {
         return $this->slug;
     }
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
+
     public function setSlug(string $slug): self
     {
-
-
-
         $this->slug = $slug;
-
-
         return  $this;
     }
 
+    public function __construct()
+    {
+       $this->items = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->date_created;
+    }
 
 
 //    public function __construct(string $date_created)

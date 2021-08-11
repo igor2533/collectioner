@@ -25,10 +25,36 @@ class Category
      */
     private $items;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+
+
+
+
 //    public function __construct()
 //    {
 //        $this->items = new ArrayCollection();
 //    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        return  $this;
+    }
+
+    public function setTargetFieldName(string $slug): self
+    {
+        $this->slug = $slug;
+        return  $this;
+    }
 
     public function getProducts(): Collection
     {
