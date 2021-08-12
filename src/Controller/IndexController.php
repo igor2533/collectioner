@@ -8,11 +8,13 @@ use App\Entity\Item;
 use App\Entity\Tag;
 use App\Repository\ItemRepository;
 use App\Repository\CategoryRepository;
+use App\Controller\SecurityController;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class IndexController extends AbstractController
 {
@@ -52,7 +54,6 @@ class IndexController extends AbstractController
 
             'slug' => $request->get('slug'),
         ));
-
 
         return $this->render('view.html.twig',
             ['item' => $item,

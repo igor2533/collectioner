@@ -12,9 +12,10 @@
 
         <div class="col-sm-6 content_div_item">
             <div class="title_item_box_black col-sm-12"><span>{{ item.title }}</span></div>
+            <div class="date_item_box_black col-sm-12"><span>{{ item.category }}</span></div>
             <div class="description_item_box_black col-sm-12">
-                <span>{{ item.description }}</span></div>
-            <div class="date_item_box_black col-sm-12"><span>Опубликовано: {{ item.description }}</span></div>
+                <span>{{ item.description | raw }}</span></div>
+            <div class="date_item_box_black col-sm-12"><span>Опубликовано: {{ item.dateCreated }}</span></div>
             <div class="date_item_box_author col-sm-12"><span>Автор: </span><a href="#">{{ item.author }}</a></div>
 
       <div class="col-sm-12">

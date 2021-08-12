@@ -4,9 +4,25 @@
 
 {% block body %}
     <style>
+        .form-group {
+            float: left;
+            width: 100%;
+        }
+        .col-sm-6.form_left {
+            float: left;
+            padding: 20px;
+        }
         .container form {
             max-width: 600px;
             margin: 0 auto;
+        }
+        form {
+            width: 100%!important;
+            max-width: 100%!important;
+        }
+        .form-group.form_end_t>div.form_left {
+            float: left;
+            padding: 20px;
         }
     </style>
     <h1>Add Item</h1>
@@ -16,65 +32,82 @@
         {{ form_errors(addItemForm) }}
     </div>
 <div class="form-group">
-    {{ form_row(addItemForm.title,{
-        attr: {'class': 'form-control'}
-    }) }}
+
+    <div class="col-sm-6 form_left"> {{ form_row(addItemForm.title,{
+            attr: {'class': 'form-control'},
+            label: false,
+            placeholder: 'Title'
+        }) }}</div>
+    <div class="col-sm-6 form_left">{{ form_row(addItemForm.category,{
+            attr: {'class': 'form-control'},
+            label: false,
+            placeholder: 'Category'
+        }) }}</div>
+
+
 </div>
 <div class="form-group">
     {{ form_row(addItemForm.description, {
-        label: 'Description',
-        attr: {'class': 'form-control'}
+        attr: {'class': 'form-control'},
+        label: false
+
     }) }}
 </div>
-<div class="form-group">
+<div class="form-group form_end_t">
+    <div class="col-sm-3 form_left">
     {{ form_row(addItemForm.image,{
-        attr: {'class': 'form-control'}
+        attr: {'class': 'form-control'},
+        label: false,
+
     }) }}
-</div>
-    <div class="form-group">
-        {{ form_row(addItemForm.category,{
-            attr: {'class': 'form-control'}
+    </div>
+    <div class="col-sm-5 form_left">
+      {{ form_row(addItemForm.tag,{
+          label: false,
+          placeholder: 'Tags'
+      }) }}
+    </div>
+
+    <div class="col-sm-2 form_left">
+        {{ form_row(addItemForm.agreeTerms,{
+            label: 'I accept',
+            attr: {'class': 'form-check-input'}
         }) }}
     </div>
-<div class="form-group">
-    {{ form_row(addItemForm.agreeTerms,{
-        label: 'Check me out',
-        attr: {'class': 'form-check-input'}
-    }) }}
-</div>
-    <div class="form-group">
-        <ul class="tags">
-            {% for tag in addItemForm.tag %}
-                <li>{{ form_row(tag.title) }}</li>
-            {% endfor %}
-        </ul>
-
+    <div class="col-sm-2 form_left">
+        <button type="submit" class="btn btn-primary">Добавить</button>
     </div>
 
 
 
-
+</div>
 
 <div class="form-group">
-    <button type="submit" class="btn btn-primary">Добавить</button>
+
+
 </div>
+
+
+
+
+
     {{ form_end(addItemForm) }}
 
 
 
 
-    {% form_theme addTagForm 'foundation_5_layout.html.twig' %}
-    {{ form_start(addTagForm) }}
+{#    {% form_theme addTagForm 'foundation_5_layout.html.twig' %}#}
+{#    {{ form_start(addTagForm) }}#}
 
 
-    <div class="form-group">
+{#    <div class="form-group">#}
 
-            {{ form_row(addTagForm.title) }}
-        <button type="submit" class="btn btn-primary add_slug_btn">Добавить</button>
-    </div>
+{#            {{ form_row(addTagForm.title) }}#}
+{#        <button type="submit" class="btn btn-primary add_slug_btn">Добавить</button>#}
+{#    </div>#}
 
 
-    {{ form_end(addTagForm) }}
+{#    {{ form_end(addTagForm) }}#}
 
 
 

@@ -27,15 +27,19 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class AddItemFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title',TextType::class)->add('description', TextareaType::class, [
-                'attr' => ['class' => 'tinymce'],
-            ])->add('category')
+            ->add('title')->add('description', CKEditorType::class, array(
+        'config' => array(
+            'uiColor' => '#ffffff',
+          )))
+
+            ->add('category')
             ->add('image', FileType::class, [
                 'label' => 'Load image',
 

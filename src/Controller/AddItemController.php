@@ -13,13 +13,14 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AddItemController extends AbstractController
 {
     #[Route('/add_item', name: 'app_add_item')]
-    public function add_item(Request $request): Response
+    public function add_item(Request $request,UserInterface $user): Response
     {
 
 
@@ -68,7 +69,10 @@ class AddItemController extends AbstractController
 
             //$slugify = $slugify."_".strval($item->getId());
               $item->setSlug($slugify->slugify($item->getTitle()."_".$item->getId()));
-                $item->setDateCreated(date("m.d.y"));
+             $item->setDateCreated(date("m.d.y"));
+          $item->setAuthor($this->getUser());
+            $item->setStatus(1);
+            $item->setLikes(0);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($item);
             $entityManager->flush();
