@@ -4,6 +4,7 @@ namespace App\Entity;
 use App\Entity\Category;
 use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
@@ -210,7 +211,7 @@ class Item
         return $this;
     }
 
-    public function getTag(): ?object
+    public function getTag(): Collection
     {
         return $this->tag;
     }
@@ -258,11 +259,14 @@ class Item
     public function __construct()
     {
        $this->items = new ArrayCollection();
+       $this->tag = new ArrayCollection();
     }
 
     public function __toString()
     {
         return $this->date_created;
+        return $tag->title;
+
     }
 
 
@@ -285,6 +289,22 @@ class Item
 //        //$item->setDateCreated(2016-06-12);
 //        $this->date_created= new \DateTime();
 //    }
+
+public function addTag(Tag $tag): self
+{
+    if (!$this->tag->contains($tag)) {
+        $this->tag[] = $tag;
+    }
+
+    return $this;
+}
+
+public function removeTag(Tag $tag): self
+{
+    $this->tag->removeElement($tag);
+
+    return $this;
+}
 
 
 

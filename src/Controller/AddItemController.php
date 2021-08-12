@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Item;
+use App\Entity\Tag;
 use App\Form\AddItemFormType;
+use App\Form\TagType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -24,8 +26,15 @@ class AddItemController extends AbstractController
 
 
         $item = new Item();
+       $tag = new Tag();
+
+
         $form = $this->createForm(AddItemFormType::class, $item);
+        $form_tag = $this->createForm(TagType::class,$tag);
+
+
         $form->handleRequest($request);
+        $form_tag->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('image')->getData();
@@ -68,8 +77,37 @@ class AddItemController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
+
+
+
+
+
+
+
+
+        if ($form_tag->isSubmitted() && $form_tag->isValid()) {
+
+
+
+
+           $slugify = new Slugify();
+
+           //$slugify = $slugify."_".strval($item->getId());
+           $tag->setSlug($slugify->slugify($tag->getTitle()));
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($tag);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('create_item');
+        }
+
+
+
         return $this->render('item/add.html.twig', [
             'addItemForm' => $form->createView(),
+            'addTagForm' => $form_tag->createView()
         ]);
     }
 }

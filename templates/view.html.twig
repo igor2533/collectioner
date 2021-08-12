@@ -17,6 +17,15 @@
             <div class="date_item_box_black col-sm-12"><span>Опубликовано: {{ item.description }}</span></div>
             <div class="date_item_box_author col-sm-12"><span>Автор: </span><a href="#">{{ item.author }}</a></div>
 
+      <div class="col-sm-12">
+          {% for tag in item.tag  %}
+       <a href="{{ url('index') }}/tag/{{ tag.slug }}" class="badge badge-success">{{ tag.title }}</a>
+          {% endfor %}
+
+      </div>
+
+
+
 
 
         </div>

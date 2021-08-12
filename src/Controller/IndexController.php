@@ -56,7 +56,7 @@ class IndexController extends AbstractController
 
         return $this->render('view.html.twig',
             ['item' => $item,
-                'tags' => $tags]);
+               ]);
 
     }
 

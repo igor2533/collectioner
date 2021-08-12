@@ -172,7 +172,14 @@ h1.title_category_page{
 .row.item_single {
     padding-top: 47px;
 }
-
-
+a.badge.badge-success:hover {
+    color:white;
+}
+a.badge.badge-success {
+    background: #43c013;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 8px;
+}
 
 /* end view twig */
