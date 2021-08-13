@@ -6,6 +6,8 @@ use App\Entity\Item;
 use App\Entity\Tag;
 use App\Form\AddItemFormType;
 use App\Form\TagType;
+use Cloudinary\Cloudinary;
+use ContainerBIxhQvB\getSpeicher210Cloudinary_ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -16,17 +18,27 @@ use Cocur\Slugify\Slugify;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use Speicher210\CloudinaryBundle\Speicher210CloudinaryBundle;
+use Symfony\Config\Speicher210Cloudinary;
+use Speicher210\CloudinaryBundle\DependencyInjection\Configuration;
+use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
 class AddItemController extends AbstractController
 {
+
+
+
+
+
+
+
     #[Route('/add_item', name: 'app_add_item')]
     public function add_item(Request $request,UserInterface $user): Response
     {
 
+       //$cloudinary = new Cloudinary('cloudinary://345414795685931:aUt9VgLGEcxorWN6AvhILPBQc5Y@karasika');
 
-
-
-        $item = new Item();
+        //$cloudinary->uploadApi->upload('https://evropochta.by/UserFiles/950200%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82.png');
+     $item = new Item();
        $tag = new Tag();
 
 
@@ -59,6 +71,11 @@ class AddItemController extends AbstractController
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
                 $item->setImage($newFilename);
+                $file_ss = 'https://localhost:8000/uploads/images/'.$newFilename;
+                Uploader::upload($file_ss);
+
+
+
             }
 
 
@@ -114,4 +131,11 @@ class AddItemController extends AbstractController
             'addTagForm' => $form_tag->createView()
         ]);
     }
+
+    public function upload($file, $options = []){
+
+
+    }
+
+
 }

@@ -28,8 +28,8 @@
         "symfony/validator": "5.3.*",
         "symfony/yaml": "5.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0",
-        "cloudinary/cloudinary_php": "^2"
+        "twig/twig": "^2.12|^3.0"
+
     },
     "config": {
         "optimize-autoloader": true,
