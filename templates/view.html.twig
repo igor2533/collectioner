@@ -6,16 +6,21 @@
 
     <div class="row item_single">
 
-        <div class="col-sm-6 img_div_item">
-            <img src="/uploads/images/{{ item.image }}">
+        <div data-nav="thumbs" data-allowfullscreen="true"  data-transition="crossfade" data-width="100%"  class="col-sm-8 img_div_item fotorama">
+
+            {% for image in item.images  %}
+                <a href="{{ image.name }}"><img src="{{ image.name }}"></a>
+            {% endfor %}
+
+
         </div>
 
-        <div class="col-sm-6 content_div_item">
+        <div class="col-sm-4 content_div_item">
             <div class="title_item_box_black col-sm-12"><span>{{ item.title }}</span></div>
-            <div class="date_item_box_black col-sm-12"><span>{{ item.category }}</span></div>
+            <div class="date_item_box_black col-sm-12"><span>Категория:</span><a href="{{ path('category-page', {'slug': item.category.slug }) }}">{{ item.category.title }}</a></div>
             <div class="description_item_box_black col-sm-12">
                 <span>{{ item.description | raw }}</span></div>
-            <div class="date_item_box_black col-sm-12"><span>Опубликовано: {{ item.dateCreated }}</span></div>
+            <div class="date_item_box_black col-sm-12"><span>Опубликовано: {{ item.dateCreated|date("d.m.Y") }}</span></div>
             <div class="date_item_box_author col-sm-12"><span>Автор: </span><a href="#">{{ item.author }}</a></div>
 
       <div class="col-sm-12">
@@ -33,6 +38,68 @@
 
     </div>
 
+
+    <div class="col-sm-12 comment_box">
+
+        <h2>Комментарии</h2>
+
+        {% for comment in item.comments  %}
+
+
+        <div class="col-sm-12 comment_items">
+
+            <div class="col-sm-3 comment_img_user"><img src="https://martinvalen.com/9646-large_default/men-s-retro-aviator-sunglasses-brown.jpg"></div>
+            <div class="col-sm-5 comment_item_content">
+                <div class="col-sm-12 comment_item_user"><span>{{ comment.author }}</span></div>
+                <div class="col-sm-12 comment_item_date"><span>{{ comment.dateCreated|date("d.m.Y") }}</span></div>
+                <div class="col-sm-12 comment_item_text"><span>{{ comment.description }}</span></div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+        <div class="col-sm-12 comment_add">
+
+
+
+                {% form_theme commentForm 'foundation_5_layout.html.twig' %}
+                {{ form_start(commentForm) }}
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(commentForm) }}
+                </div>
+                <div class="form-group" style="margin-top: 33px;">
+
+                    <div class="col-sm-6 form_left"> {{ form_row(commentForm.description,{
+                            attr: {'class': 'form-control','rows':'3'},
+                            label: false,
+                            placeholder: ''
+                        }) }}</div>
+
+
+
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </div>
+
+
+                {{ form_end(commentForm) }}
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="row">
+
+
+    </div>
 
 
 

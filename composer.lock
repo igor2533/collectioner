@@ -4,8 +4,66 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec477463f6628b0544ef3c2cbaa9e7ec",
+    "content-hash": "924c69c6a4356398303e3c0768f542c4",
     "packages": [
+        {
+            "name": "cloudinary/cloudinary_php",
+            "version": "1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_php.git",
+                "reference": "2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab",
+                "reference": "2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-zip": "*",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ],
+                "files": [
+                    "src/Helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_php",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "support": {
+                "email": "info@cloudinary.com",
+                "issues": "https://github.com/cloudinary/cloudinary_php/issues",
+                "source": "https://github.com/cloudinary/cloudinary_php/tree/1.20.0"
+            },
+            "time": "2021-01-13T18:40:23+00:00"
+        },
         {
             "name": "cocur/slugify",
             "version": "v4.0.0",
@@ -2089,6 +2147,67 @@
                 "source": "https://github.com/php-fig/log/tree/2.0.0"
             },
             "time": "2021-07-14T16:41:46+00:00"
+        },
+        {
+            "name": "speicher210/cloudinary-bundle",
+            "version": "0.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Speicher210/CloudinaryBundle.git",
+                "reference": "7209648ed15abccd320c33565d346686e23884e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Speicher210/CloudinaryBundle/zipball/7209648ed15abccd320c33565d346686e23884e1",
+                "reference": "7209648ed15abccd320c33565d346686e23884e1",
+                "shasum": ""
+            },
+            "require": {
+                "cloudinary/cloudinary_php": "^1.1",
+                "php": "^7.1|^8.0",
+                "symfony/console": "^3.4|^4.1|^5.0",
+                "symfony/finder": "^3.4|^4.1|^5.0",
+                "symfony/framework-bundle": "^3.4|^4.1.12|^5.0",
+                "symfony/yaml": "^3.4|^4.1|^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
+                "roave/security-advisories": "dev-master",
+                "symfony/phpunit-bridge": "^4.2",
+                "twig/twig": "^1.18|^2.0|^3.0"
+            },
+            "suggest": {
+                "twig/twig": "Allow to use the cloudinary_url function/filter"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Speicher210\\CloudinaryBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dragos Protung",
+                    "email": "dragos@protung.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Bundle for Cloudinary PHP API library",
+            "homepage": "https://github.com/Speicher210/CloudinaryBundle",
+            "keywords": [
+                "bundle",
+                "cloudinary",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/Speicher210/CloudinaryBundle/issues",
+                "source": "https://github.com/Speicher210/CloudinaryBundle/tree/0.11.0"
+            },
+            "time": "2021-02-17T21:13:04+00:00"
         },
         {
             "name": "symfony/asset",
@@ -5813,6 +5932,108 @@
                 }
             ],
             "time": "2021-07-27T00:57:57+00:00"
+        },
+        {
+            "name": "symfony/serializer",
+            "version": "v5.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/serializer.git",
+                "reference": "f04e368e3cb35948550c7e95cc8918cb7e761c0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/f04e368e3cb35948550c7e95cc8918cb7e761c0c",
+                "reference": "f04e368e3cb35948550c7e95cc8918cb7e761c0c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "conflict": {
+                "doctrine/annotations": "<1.12",
+                "phpdocumentor/reflection-docblock": "<3.2.2",
+                "phpdocumentor/type-resolver": "<1.4.0",
+                "symfony/dependency-injection": "<4.4",
+                "symfony/property-access": "<4.4",
+                "symfony/property-info": "<5.3",
+                "symfony/yaml": "<4.4"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.12",
+                "phpdocumentor/reflection-docblock": "^3.2|^4.0|^5.0",
+                "symfony/cache": "^4.4|^5.0",
+                "symfony/config": "^4.4|^5.0",
+                "symfony/dependency-injection": "^4.4|^5.0",
+                "symfony/error-handler": "^4.4|^5.0",
+                "symfony/filesystem": "^4.4|^5.0",
+                "symfony/form": "^4.4|^5.0",
+                "symfony/http-foundation": "^4.4|^5.0",
+                "symfony/http-kernel": "^4.4|^5.0",
+                "symfony/mime": "^4.4|^5.0",
+                "symfony/property-access": "^4.4.9|^5.0.9",
+                "symfony/property-info": "^5.3",
+                "symfony/uid": "^5.1",
+                "symfony/validator": "^4.4|^5.0",
+                "symfony/var-dumper": "^4.4|^5.0",
+                "symfony/var-exporter": "^4.4|^5.0",
+                "symfony/yaml": "^4.4|^5.0"
+            },
+            "suggest": {
+                "psr/cache-implementation": "For using the metadata cache.",
+                "symfony/config": "For using the XML mapping loader.",
+                "symfony/mime": "For using a MIME type guesser within the DataUriNormalizer.",
+                "symfony/property-access": "For using the ObjectNormalizer.",
+                "symfony/property-info": "To deserialize relations.",
+                "symfony/var-exporter": "For using the metadata compiler.",
+                "symfony/yaml": "For using the default YAML mapping loader."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Serializer\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/serializer/tree/v5.3.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-07-21T13:18:10+00:00"
         },
         {
             "name": "symfony/service-contracts",

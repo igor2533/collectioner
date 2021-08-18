@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 use App\Entity\Category;
+
+
 use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,23 +28,42 @@ class Item
      */
     private $title;
 
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="item",cascade={"persist"})
+     */
+    private $images;
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="item",cascade={"persist"})
+     */
+    private $comments;
+
+
     /**
      * @ORM\ManyToOne (targetEntity="App\Entity\Category", inversedBy="items")
      */
     private $category;
 
+
+
+
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $status;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image;
+
     /**
      * @ORM\ManyToMany   (targetEntity="App\Entity\Tag", inversedBy="items")
      */
     private $tag;
+
+
+
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -53,8 +74,10 @@ class Item
      */
     private $description;
 
+
+
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_created;
 
@@ -88,6 +111,9 @@ class Item
         return $this->id;
     }
 
+
+
+
     public function getTitle(): ?string
     {
         return $this->title;
@@ -100,17 +126,6 @@ class Item
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
 
     public function getCategory(): ?object
@@ -176,17 +191,9 @@ class Item
         return $this;
     }
 
-    public function getDateCreated(): ?string
-    {
-         return $this->date_created;
-    }
 
-    public function setDateCreated(string $date_created): self
-    {
 
-        $this->date_created = $date_created;
-        return $this;
-    }
+
 
     public function getDateModife(): ?\DateTimeInterface
     {
@@ -232,7 +239,6 @@ class Item
 
 
 
-
     public function getYear(): ?string
     {
         return $this->year;
@@ -261,6 +267,10 @@ class Item
        $this->items = new ArrayCollection();
        $this->tag = new ArrayCollection();
 
+        $this->images = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+
+
     }
 
     public function __toString()
@@ -270,28 +280,10 @@ class Item
 
 
 
+
+
     }
 
-
-//    public function __construct(string $date_created)
-//    {
-//        $this->date_created= new \DateTime();
-//        //$this->date_modife= new \DateTime();
-//
-//    }
-
-
-//    public function preUpdate()
-//    {
-//        $this->date_modife= new \DateTime();
-//    }
-
-//    public function setCreatedAtValue(): void
-//    {
-//
-//        //$item->setDateCreated(2016-06-12);
-//        $this->date_created= new \DateTime();
-//    }
 
 public function addTag(Tag $tag): self
 {
@@ -308,6 +300,106 @@ public function removeTag(Tag $tag): self
 
     return $this;
 }
+
+
+
+
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getItem() === $this) {
+                $image->setItem(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getItem() === $this) {
+                $comment->setItem(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->date_created;
+    }
+
+    public function setDateCreated(?\DateTimeInterface $date_created): self
+    {
+        $this->date_created = $date_created;
+
+        return $this;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Item;
+use App\Entity\Images;
 use App\Entity\Tag;
+use Doctrine\DBAL\Types\JsonType;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\DBAL\Types\ArrayType;
 use Doctrine\ORM\Mapping\Builder\AssociationBuilder;
@@ -40,25 +42,40 @@ class AddItemFormType extends AbstractType
           )))
 
             ->add('category')
-            ->add('image', FileType::class, [
-                'label' => 'Load image',
+//            ->add('image', FileType::class, [
+//                'label' => 'Главное изображение новости',
+//                'multiple' => false,
+////                'mapped' => false,
+////                'required' => false,
+////                'constraints' => [
+////                    new File([
+////                        'maxSize' => '2024k',
+////                        'mimeTypes' => [
+////                            'image/*',
+////                        ],
+////                        'mimeTypesMessage' => 'Please upload a valid jpg document',
+////                    ])
+////                ],
+//            ])
 
+
+            ->add('images', FileType::class,[
+                'label' => false,
+                'multiple' => true,
                 'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2024k',
-                        'mimeTypes' => [
-                            'image/*',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid jpg document',
-                    ])
-                ],
+                'required' => false
             ])
 
 
-           ->add('tag')
 
+           ->add('tag')
+//   ->add('image', ChoiceType::class, [
+//       'multiple'=>true,
+//         'choices' => [
+//             '0' => 'first',
+//             '1' => 'second',
+//         ],
+//     ])
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -84,6 +101,7 @@ class AddItemFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Item::class,
+
 
         ]);
     }

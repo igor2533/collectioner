@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Entity\Images;
+
 use App\Form\AddItemFormType;
 use App\Form\TagType;
-use Cloudinary\Cloudinary;
+//use Cloudinary\Cloudinary;
 use ContainerBIxhQvB\getSpeicher210Cloudinary_ApiService;
+use Speicher210\CloudinaryBundle\Cloudinary\Cloudinary;
+use Speicher210\CloudinaryBundle\Command\UploadCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -22,6 +26,13 @@ use Speicher210\CloudinaryBundle\Speicher210CloudinaryBundle;
 use Symfony\Config\Speicher210Cloudinary;
 use Speicher210\CloudinaryBundle\DependencyInjection\Configuration;
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
+use Speicher210\CloudinaryBundle\Cloudinary\Api;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 class AddItemController extends AbstractController
 {
 
@@ -35,11 +46,10 @@ class AddItemController extends AbstractController
     public function add_item(Request $request,UserInterface $user): Response
     {
 
-       //$cloudinary = new Cloudinary('cloudinary://345414795685931:aUt9VgLGEcxorWN6AvhILPBQc5Y@karasika');
 
-        //$cloudinary->uploadApi->upload('https://evropochta.by/UserFiles/950200%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82.png');
      $item = new Item();
        $tag = new Tag();
+
 
 
         $form = $this->createForm(AddItemFormType::class, $item);
@@ -50,32 +60,37 @@ class AddItemController extends AbstractController
         $form_tag->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('image')->getData();
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $slugify = new Slugify();
-                $safeFilename = $slugify->slugify($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
-                try {
-                    $imageFile->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+            $images = $form->get('images')->getData();
 
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
-                $item->setImage($newFilename);
-                $file_ss = 'https://localhost:8000/uploads/images/'.$newFilename;
-                Uploader::upload($file_ss);
+            foreach($images as $image){
+                // On génère un nouveau nom de fichier
+
+
+                //$fichier =  $my_generate.'.'.$image->guessExtension();
+
+                // On copie le fichier dans le dossier uploads
+//                $image->move(
+//                    $this->getParameter('images_directory'),
+//                    $fichier
+//                );
+
+                $my_generate = random_int(100000000, 900000000);
+                Uploader::upload($image,[
+                  'public_id' => $my_generate,
+                   'version' => '99999999999999'
+               ]);
+            $link_cloud = 'https://res.cloudinary.com/karasika/image/upload/'.strval($my_generate).".".$image->getClientOriginalExtension();
 
 
 
+
+
+
+                    // On crée l'image dans la base de données
+                $img = new Images();
+                $img->setName($link_cloud);
+                $item->addImage($img);
             }
 
 
@@ -86,14 +101,22 @@ class AddItemController extends AbstractController
 
             //$slugify = $slugify."_".strval($item->getId());
               $item->setSlug($slugify->slugify($item->getTitle()."_".$item->getId()));
-             $item->setDateCreated(date("m.d.y"));
+            //$dateImmutable = \DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now')); # also tried using \DateTimeImmutable
+
+            $item->setDateCreated(new \DateTime());
           $item->setAuthor($this->getUser());
+
+
             $item->setStatus(1);
             $item->setLikes(0);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($item);
+
+
             $entityManager->flush();
             // do anything else you need here, like send an email
+
+
 
             return $this->redirectToRoute('index');
         }
@@ -105,32 +128,25 @@ class AddItemController extends AbstractController
 
 
 
-
-        if ($form_tag->isSubmitted() && $form_tag->isValid()) {
-
-
-
-
-           $slugify = new Slugify();
-
-           //$slugify = $slugify."_".strval($item->getId());
-           $tag->setSlug($slugify->slugify($tag->getTitle()));
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($tag);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('create_item');
-        }
-
-
-
         return $this->render('item/add.html.twig', [
             'addItemForm' => $form->createView(),
             'addTagForm' => $form_tag->createView()
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function upload($file, $options = []){
 

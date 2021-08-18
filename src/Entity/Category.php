@@ -56,10 +56,10 @@ class Category
         return  $this;
     }
 
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
+//    public function getProducts(): Collection
+//    {
+//        return $this->products;
+//    }
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -126,6 +126,7 @@ class Category
     public function __toString()
     {
         return $this->title;
+        return $this->slug;
    }
 
     /**

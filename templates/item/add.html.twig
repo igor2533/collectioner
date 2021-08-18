@@ -53,15 +53,18 @@
 
     }) }}
 </div>
-<div class="form-group form_end_t">
-    <div class="col-sm-3 form_left">
-    {{ form_row(addItemForm.image,{
-        attr: {'class': 'form-control'},
-        label: false,
+
+<div class="form-group">
+
+    {{ form_row(addItemForm.images,{
 
     }) }}
-    </div>
-    <div class="col-sm-5 form_left">
+</div>
+
+
+<div class="form-group form_end_t">
+
+    <div class="col-sm-6 form_left">
       {{ form_row(addItemForm.tag,{
           label: false,
           placeholder: 'Tags'
@@ -79,7 +82,7 @@
 
 
 
-    <div class="col-sm-2 form_left">
+    <div class="col-sm-4 form_left">
         <button type="submit" class="btn btn-primary">Добавить</button>
     </div>
 
@@ -95,21 +98,44 @@
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        var widget = cloudinary.createUploadWidget({
-            cloud_name: 'karasika',
-            upload_preset: 'ml_default',
-            sources: ['local', 'url'],
 
-        }, (error, result) => {
 
-            if (result.event === "success") {
-                console.log(result.info.secure_url);
-                widget.close();
-            }
-        });
+
+
+
+
+            var myWidget = cloudinary.createUploadWidget({
+                    cloudName: "karasika",
+                    uploadPreset: "ml_default",
+                    sources: [
+                        "local",
+
+                        "camera",
+
+                    ],
+
+
+
+                    multiple: true,
+
+
+                },
+                (error, result) => {
+
+                    if (result.event === "success") {
+                        console.log(result.info.secure_url);
+                        console.log(result.info);
+                        //widget.close();
+                    }
+                });
+
+
+
+
+
 
         document.getElementById("upload_widget").addEventListener("click", function(){
-            widget.open();
+            myWidget.open();
         }, false);
     </script>
 

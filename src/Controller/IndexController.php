@@ -2,19 +2,25 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
-use App\Entity\User;
+//use App\Entity\Category;
+//use App\Entity\User;
+//use App\Entity\Item;
+//use App\Entity\Tag;
+use App\Entity\Comments;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Form\CommentFormType;
 use App\Repository\ItemRepository;
 use App\Repository\CategoryRepository;
-use App\Controller\SecurityController;
-use App\Form\RegistrationFormType;
+//use App\Controller\SecurityController;
+//use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+
+//use Symfony\Component\Routing\Annotation\Route;
+//use Symfony\Component\Security\Core\User\UserInterface;
 
 class IndexController extends AbstractController
 {
@@ -48,18 +54,60 @@ class IndexController extends AbstractController
     }
 
 
-    public function show(ItemRepository $itemRepository,string $slug, Request $request):Response {
+    public function show(ItemRepository $itemRepository,string $slug, Request $request,UserInterface $user):Response {
 
         $item = $itemRepository->findOneBy(array(
 
             'slug' => $request->get('slug'),
         ));
 
+
+
+        $comment = new Comments();
+        $form = $this->createForm(CommentFormType::class, $comment);
+
+
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // $comment = $form->get('images')->getData();
+
+            // $item->setAuthor($this->getUser());
+            $comment->setItem($item);
+            $comment->setDateCreated(new \DateTime());
+            $comment->setAuthor($this->getUser());
+            //$comment->setDescription();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
         return $this->render('view.html.twig',
             ['item' => $item,
+                'commentForm' => $form->createView(),
+
                ]);
 
     }
+
+
+
+
 
 
 
