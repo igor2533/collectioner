@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Item{% endblock %}
+
+{% block body %}
+
+    <h1>Update Item</h1>
+    {% form_theme updateForm 'foundation_5_layout.html.twig' %}
+    {{ form_start(updateForm,{'multipart': true}) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(updateForm) }}
+    </div>
+<div class="form-group">
+
+    <div class="col-sm-6 form_left"> {{ form_row(updateForm.title,{
+            attr: {'class': 'form-control'},
+            label: false,
+            placeholder: 'Title'
+        }) }}</div>
+
+
+</div>
+
+    <div class="form-group">
+        {{ form_row(updateForm.description,{
+            attr: {'class': 'form-control'},
+            label: false,
+            placeholder: 'Title'
+        }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(updateForm.category,{
+            attr: {'class': 'form-control'},
+            label: false,
+            placeholder: 'Title'
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(updateForm.images) }}
+        {{ form_errors(updateForm.images) }}
+
+        <ul>
+
+            {% for image in updateForm.images %}
+
+{#                <li>{{ form_row(image.name) }}  <a href="{{ path('remove_images') }}" class="remove">X</a></li>#}
+            {% endfor %}
+
+
+
+        </ul>
+
+
+
+    </div>
+
+
+
+
+    <div class="form-group">
+        {{ form_row(updateForm.tag,{
+
+        }) }}
+    </div>
+    <div class="col-sm-4 form_left">
+        <button type="submit" class="btn btn-primary">Uodate</button>
+    </div>
+
+
+
+</div>
+
+
+
+
+    {{ form_end(updateForm) }}
+
+
+
+
+{#    {% form_theme addTagForm 'foundation_5_layout.html.twig' %}#}
+{#    {{ form_start(addTagForm) }}#}
+
+
+{#    <div class="form-group">#}
+
+{#            {{ form_row(addTagForm.title) }}#}
+{#        <button type="submit" class="btn btn-primary add_slug_btn">Добавить</button>#}
+{#    </div>#}
+
+
+{#    {{ form_end(addTagForm) }}#}
+
+
+
+
+{% endblock %}
+
+
+

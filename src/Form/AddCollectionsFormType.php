@@ -4,9 +4,9 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Item;
-use App\Entity\Collections;
 use App\Entity\Images;
 use App\Entity\Tag;
+use App\Entity\Collections;
 use Doctrine\DBAL\Types\JsonType;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\DBAL\Types\ArrayType;
@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping\Builder\AssociationBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use App\Form\AddItemFormType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -32,59 +33,25 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
-class AddItemFormType extends AbstractType
+class AddCollectionsFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-            ])
-            ->add('description', CKEditorType::class, array(
-                'attr' => array('class' => 'form-control'),
-        'config' => array(
-            'uiColor' => '#ffffff',
-          )))
-
-
-//            ->add('image', FileType::class, [
-//                'label' => 'Главное изображение новости',
-//                'multiple' => fals
-////                'mapped' => false,
-////                'required' => false,
-////                'constraints' => [
-////                    new File([
-////                        'maxSize' => '2024k',
-////                        'mimeTypes' => [
-////                            'image/*',
-////                        ],
-////                        'mimeTypesMessage' => 'Please upload a valid jpg document',
-////                    ])
-////                ],
-//            ])
-
-
-            ->add('images', FileType::class,[
-                'attr' => array('class'=>'form_images'),
+            ->add('title')
+            ->add('image', FileType::class,[
+                'attr' => array('class'=>'form_image'),
                 'label' => false,
-                'multiple' => true,
+                'multiple' => false,
                 'mapped' => false,
                 'required' => false
             ])
 
+            ->add('items', CollectionType::class, [
+                'entry_type' => AddItemFormType::class,
+                'allow_add'    => true,
 
-
-           ->add('tag')
-//   ->add('image', ChoiceType::class, [
-//       'multiple'=>true,
-//         'choices' => [
-//             '0' => 'first',
-//             '1' => 'second',
-//         ],
-//     ])
-
-
-        ;
+            ]);
 
 
 
@@ -98,7 +65,7 @@ class AddItemFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver):void
     {
         $resolver->setDefaults([
-            'data_class' => Item::class,
+            'data_class' => Collections::class,
 
 
         ]);

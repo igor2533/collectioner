@@ -30,6 +30,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $items;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Collections", mappedBy="user")
+     */
+    private $collections;
+
+    /**
      * @ORM\Column(type="integer",nullable=true)
      */
     private $status;
@@ -142,6 +147,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->collections = new ArrayCollection();
     }
 
     public function __toString()
@@ -194,6 +200,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($item->getUser() === $this) {
                 $item->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Collections[]
+     */
+    public function getCollections(): Collection
+    {
+        return $this->collections;
+    }
+
+    public function addCollection(Collections $collection): self
+    {
+        if (!$this->collections->contains($collection)) {
+            $this->collections[] = $collection;
+            $collection->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollection(Collections $collection): self
+    {
+        if ($this->collections->removeElement($collection)) {
+            // set the owning side to null (unless already changed)
+            if ($collection->getUser() === $this) {
+                $collection->setUser(null);
             }
         }
 

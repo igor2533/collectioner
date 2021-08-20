@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-use App\Entity\Category;
+
 
 
 use App\Repository\ItemRepository;
@@ -31,22 +31,26 @@ class Item
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="item",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="item",cascade={"persist","remove"})
      */
     private $images;
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Collections", inversedBy="item")
+     */
+    private $collection;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="item",cascade={"persist"})
      */
     private $comments;
 
-
-    /**
-     * @ORM\ManyToOne (targetEntity="App\Entity\Category", inversedBy="items")
-     */
-    private $category;
+//
+//    /**
+//     * @ORM\ManyToOne (targetEntity="App\Entity\Category", inversedBy="items")
+//     */
+//    private $category;
 
 
 
@@ -128,17 +132,17 @@ class Item
 
 
 
-    public function getCategory(): ?object
-    {
-        return $this->category;
-    }
-
-    public function setCategory(Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
+//    public function getCategory(): ?object
+//    {
+//        return $this->category;
+//    }
+//
+//    public function setCategory(Category $category): self
+//    {
+//        $this->category = $category;
+//
+//        return $this;
+//    }
 
 
     public function isStatus(){
@@ -389,6 +393,20 @@ public function removeTag(Tag $tag): self
 
         return $this;
     }
+
+    public function getCollection(): ?Collections
+    {
+        return $this->collection;
+    }
+
+    public function setCollection(?Collections $collection): self
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+
 
 
 

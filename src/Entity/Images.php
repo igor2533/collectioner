@@ -17,7 +17,7 @@ class Images
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $name;
 
@@ -30,6 +30,8 @@ class Images
     {
         return $this->id;
     }
+
+
 
     public function getName(): ?string
     {
@@ -54,4 +56,6 @@ class Images
 
         return $this;
     }
+
+
 }

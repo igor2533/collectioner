@@ -26,6 +26,8 @@ class AddItemController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $images = $form->get('images')->getData();
+
+
             foreach($images as $image){
                 $my_generate = random_int(100000000, 900000000);
                 Uploader::upload($image,[
@@ -72,6 +74,7 @@ class AddItemController extends AbstractController
         }
         return $this->render('item/add.html.twig', [
             'addItemForm' => $form->createView(),
+
 
         ]);
     }

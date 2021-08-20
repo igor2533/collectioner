@@ -37,7 +37,7 @@
         <link href="https://localhost:8000/assets/style.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -61,7 +61,7 @@
 
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li class="nav-item"><a class="nav-link" href="{{ path('index') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ path('create_item') }}">Create item</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('create_collection') }}">Create collection</a></li>
                        <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
 
                     {% else %}
@@ -105,6 +105,20 @@ background-size: 100%;
     $(document).ready(function() {
         $('select#add_item_form_tag').select2();
         $("input#add_item_form_images").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
+        $("input#add_collections_form_image").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
+
+
+        $('select#form_tag').select2();
+        $('select#add_collections_form_items_undefined_tag').select2();
+
+
+
+
+        $( "a.add_tag_list" ).click(function() {
+
+            $("input.form_images").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
+            $('.large-12.columns>select').select2();
+        });
 
 
     });

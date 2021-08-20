@@ -6,18 +6,31 @@ namespace App\Controller;
 //use App\Entity\User;
 //use App\Entity\Item;
 //use App\Entity\Tag;
+use App\Entity\Collections;
 use App\Entity\Comments;
+use App\Entity\Images;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Form\CommentFormType;
+
+use App\Repository\CollectionsRepository;
+use App\Repository\ImagesRepository;
 use App\Repository\ItemRepository;
+
 use App\Repository\CategoryRepository;
+use App\Form\UpdateImagesFormType;
 //use App\Controller\SecurityController;
 //use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use PhpParser\Node\Scalar\MagicConst\File;
+use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 //use Symfony\Component\Routing\Annotation\Route;
 //use Symfony\Component\Security\Core\User\UserInterface;
@@ -25,30 +38,33 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class IndexController extends AbstractController
 {
 
-    public function index(CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
+    public function index(CollectionsRepository $collectionsRepository,CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
+        $collections = $collectionsRepository->findAll();
+
         $items = $itemRepository->findAll();
-        $categories = $categoryRepository->findAll();
         return $this->render('home.html.twig',
-        ['items' => $items,
-            'categories' => $categories
+        ['collections' => $collections,
+            'items'=> $items
             ]);
 
     }
-    public function category(ItemRepository $itemRepository,CategoryRepository $categoryRepository,string $slug, Request $request):Response {
+    public function collection(ItemRepository $itemRepository,CollectionsRepository $collectionsRepository,string $slug, Request $request):Response {
 
-        $category = $categoryRepository->findOneBy(array(
+        $collection = $collectionsRepository->findOneBy(array(
 
             'slug' => $request->get('slug'),
         ));
-         //die($category->getId());
+
         $items = $itemRepository->findBy(array(
-            'category' => $category->getId()
+            'collection' => $collection->getId()
         ));
 
+        $count_items = count($items);
 
-        return $this->render('category-page.html.twig',
-            ['category' => $category,
-                'items' => $items
+        return $this->render('collection-page.html.twig',
+            ['collection' => $collection,
+                'items' => $items,
+                'count_items' => $count_items
                 ]);
 
     }
@@ -105,6 +121,113 @@ class IndexController extends AbstractController
 
     }
 
+
+
+
+    public function user(ItemRepository $itemRepository,UserRepository $userRepository,UserInterface $user, Request $request){
+
+
+        $user_items = $itemRepository->findBy(array(
+
+            'author' => $request->get('author'),
+        ));
+        $current_user = $userRepository->findOneBy(
+          array(
+              'id' => $request->get('author')
+          )
+        );
+
+        return $this->render('user.html.twig',
+            ['user_items' => $user_items,
+                'current_user' => $current_user
+
+
+            ]);
+
+    }
+
+
+     public function remove_image(ImagesRepository $imagesRepository,Request $request) {
+
+         $entityManager = $this->getDoctrine()->getManager();
+         $image = $entityManager->getRepository(Images::class)->find($request->get('image_id'));
+         if (!$image) {
+             throw $this->createNotFoundException(
+                 'No product found for id '.$request->get('image_id')
+             );
+         }
+
+         $entityManager->remove($image);
+         $entityManager->flush();
+
+         return $this->redirectToRoute('inde');
+
+     }
+
+
+    public function edit(ItemRepository $itemRepository ,Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $item = $itemRepository->findOneBy(array(
+            'id' => $request->get('id')
+        ));
+
+        if (!$item) {
+            throw $this->createNotFoundException(
+                'No news found for id ' . $request->get('id')
+            );
+        }
+
+        $form = $this->createFormBuilder($item)
+            ->add('title')
+          ->add('description', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                )))
+            ->add('tag')
+            ->add('category')->add('year')
+          ->add('images', CollectionType::class, [
+              'entry_type' => UpdateImagesFormType::class,
+              'allow_delete' => true,
+              'allow_add' => true,
+              'delete_empty' => true
+           ])
+
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $images = $form->get('images')->getData();
+            foreach($images as $image){
+                $my_generate = random_int(100000000, 900000000);
+                Uploader::upload($image,[
+                    'public_id' => $my_generate,
+                    'version' => '99999999999999'
+                ]);
+                $link_cloud = 'https://res.cloudinary.com/karasika/image/upload/'.strval($my_generate).".".$image->getClientOriginalExtension();
+                $img = new Images();
+                $img->setName($link_cloud);
+                $item->addImage($img);
+            }
+
+            $em->flush();
+            //return new Response('News updated successfully');
+        }
+
+        //$build['form'] = $form->createView();
+
+        //return $this->render('/item/update.html.twig', $build);
+
+
+        return $this->render('/item/update.html.twig',
+            [
+                'updateForm' => $form->createView(),
+
+
+            ]);
+    }
 
 
 

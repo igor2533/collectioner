@@ -3,34 +3,21 @@
 
 
 
-    <h2>Список категорий</h2>
-    <div class="row">
-        {%  for category in categories %}
-        <div class="col-lg-2 col-md-3 col-xs-6 ">
-            <a href="{{ path('category-page', {'slug': category.slug }) }}" class="href_category"><div class="box category"><span>{{ category.title }}</span></div></a>
-        </div>
-        {%  endfor %}
-
-
-    </div>
 
 
 
-
-    <h2>Последние записи</h2>
+    <h2>Последние Коллекции</h2>
     <div class="row">
 
 
 
-        {%  for item in items %}
+        {%  for collection in collections %}
 
         <div class="col-sm-4 sm-item">
-            <a href="{{ path('view', {'slug': item.slug }) }}" class="href_item">
-                <div class="box content col-sm-12" style="background: url('{{ item.images['0'].name }}')no-repeat;">
-                    <div class="title_item_box col-sm-12"><span>{{ item.title }}</span></div>
-{#                    <div class="description_item_box col-sm-12">#}
-{#                        <span>{{ item.description }}</span></div>#}
-                    <div class="date_item_box col-sm-12"><span>{{ item.dateCreated|date("d.m.Y") }}</span></div>
+            <a href="{{ path('collection-page', {'slug': collection.slug}) }}" class="href_item">
+                <div class="box content col-sm-12" style="background: url('{{ collection.image }}')no-repeat;">
+                    <div class="title_item_box col-sm-12"><span>{{ collection.title }}</span></div>
+                    <div class="date_item_box col-sm-12"><span>{{ collection.dateCreated|date("d.m.Y") }}</span></div>
                 </div>
             </a>
         </div>
@@ -40,6 +27,26 @@
 
     </div>
 
+    <h2>Последние items</h2>
+    <div class="row">
+
+
+
+        {%  for item in items %}
+
+            <div class="col-sm-4 sm-item">
+                <a href="{{ path('view', {'slug': item.slug}) }}" class="href_item">
+                    <div class="box content col-sm-12" style="background: url('{{ item.images['0'].name }}')no-repeat;">
+                        <div class="title_item_box col-sm-12"><span>{{ item.title }}</span></div>
+                        <div class="date_item_box col-sm-12"><span>{{ item.dateCreated|date("d.m.Y") }}</span></div>
+                    </div>
+                </a>
+            </div>
+        {%  endfor %}
+
+
+
+    </div>
 
 
     <div class="container these_see_div"><a href="#" class="see_these">Смотреть еще</a></div>

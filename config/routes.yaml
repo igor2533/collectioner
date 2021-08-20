@@ -4,9 +4,21 @@ index:
 view:
     path: /item/{slug}
     controller: App\Controller\IndexController:show
-category-page:
-    path: /category/{slug}
-    controller: App\Controller\IndexController:category
+collection-page:
+    path: /collection/{slug}
+    controller: App\Controller\IndexController:collection
 create_item:
     path: /add_item
     controller: App\Controller\AddItemController:add_item
+user_items:
+    path: /user/{author}
+    controller: App\Controller\IndexController:user
+edit:
+    path: /edit/{id}
+    controller: App\Controller\IndexController:edit
+remove_image:
+    path: /remove_image
+    controller: App\Controller\IndexController:remove_image
+create_collection:
+    path: /create_collection
+    controller: App\Controller\AddCollectionController:add_collection
