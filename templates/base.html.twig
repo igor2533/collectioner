@@ -38,6 +38,12 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/js/fileinput.min.js"></script>
+        <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -94,22 +100,38 @@ background-size: 100%;
     </body>
 </html>
 {#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>#}
-<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/js/fileinput.min.js"></script>
-<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 <script>
 
     $(document).ready(function() {
+        var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+            url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
         $('select#add_item_form_tag').select2();
         $("input#add_item_form_images").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
         $("input#add_collections_form_image").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
+        $("input.file_upload_update").fileinput({
+            // 'showUpload':false,
+            // 'previewFileType':'any',
+            'multiple':true,
 
+            initialPreview: [url1, url2],
+            initialPreviewAsData: true,
+            initialPreviewConfig: [
+                {caption: "Moon.jpg", downloadUrl: url1, description: "<h5>The Moon</h5>The Moon is Earth's only natural satellite and the fifth largest moon in the solar system. The Moon's distance from Earth is about 240,000 miles (385,000 km).", size: 930321, width: "120px", key: 1},
+                {caption: "Earth.jpg", downloadUrl: url2, description: "<h5>The Earth</h5> The Earth is the 3<sup>rd</sup> planet from the Sun and the only astronomical object known to harbor and support life. About 29.2% of Earth's surface is land and remaining 70.8% is covered with water.", size: 1218822, width: "120px", key: 2}
+            ],
+            deleteUrl: "/site/file-delete",
+            overwriteInitial: false,
+            maxFileSize: 100,
+            initialCaption: "The Moon and the Earth"
+
+
+
+        });
 
         $('select#form_tag').select2();
         $('select#add_collections_form_items_undefined_tag').select2();
+        $('select.my_tag_for_update').select2();
 
 
 
@@ -117,8 +139,11 @@ background-size: 100%;
         $( "a.add_tag_list" ).click(function() {
 
             $("input.form_images").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
+            $("input.file_upload_update").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
             $('.large-12.columns>select').select2();
+            $('select.my_tag_for_update').select2();
         });
+
 
 
     });

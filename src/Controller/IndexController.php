@@ -6,11 +6,13 @@ namespace App\Controller;
 //use App\Entity\User;
 //use App\Entity\Item;
 //use App\Entity\Tag;
-use App\Entity\Collections;
+
+use App\Entity\Collection;
 use App\Entity\Comments;
 use App\Entity\Images;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Form\AddCollectionsFormType;
 use App\Form\CommentFormType;
 
 use App\Repository\CollectionsRepository;
@@ -22,6 +24,7 @@ use App\Form\UpdateImagesFormType;
 //use App\Controller\SecurityController;
 //use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use PhpParser\Node\Scalar\MagicConst\File;
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
@@ -31,6 +34,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 //use Symfony\Component\Routing\Annotation\Route;
 //use Symfony\Component\Security\Core\User\UserInterface;
@@ -124,10 +128,10 @@ class IndexController extends AbstractController
 
 
 
-    public function user(ItemRepository $itemRepository,UserRepository $userRepository,UserInterface $user, Request $request){
+    public function user(CollectionsRepository $collectionsRepository,UserRepository $userRepository,UserInterface $user, Request $request){
 
 
-        $user_items = $itemRepository->findBy(array(
+        $user_collections = $collectionsRepository->findBy(array(
 
             'author' => $request->get('author'),
         ));
@@ -138,7 +142,7 @@ class IndexController extends AbstractController
         );
 
         return $this->render('user.html.twig',
-            ['user_items' => $user_items,
+            ['user_collections' => $user_collections,
                 'current_user' => $current_user
 
 
@@ -185,7 +189,7 @@ class IndexController extends AbstractController
                     'uiColor' => '#ffffff',
                 )))
             ->add('tag')
-            ->add('category')->add('year')
+           ->add('year')
           ->add('images', CollectionType::class, [
               'entry_type' => UpdateImagesFormType::class,
               'allow_delete' => true,
@@ -228,6 +232,11 @@ class IndexController extends AbstractController
 
             ]);
     }
+
+
+
+
+
 
 
 

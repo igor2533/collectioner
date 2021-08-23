@@ -22,3 +22,6 @@ remove_image:
 create_collection:
     path: /create_collection
     controller: App\Controller\AddCollectionController:add_collection
+edit_collection:
+    path: /edit_collection/{id}
+    controller: App\Controller\EditCollectionController:edit_collection

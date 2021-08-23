@@ -5,7 +5,7 @@
 
 <h1 class="title_category_page">Страница пользователя: {{ current_user.username }}</h1>
     <div class="row">
-
+<h2>Коллекции:</h2>
 
         <table class="table table-light ">
             <thead>
@@ -18,17 +18,17 @@
                 </thead>
 <tbody>
 
-    {%  for item_user in user_items %}
+    {%  for user_collection in user_collections %}
 
 
 
                 <tr>
 
 
-                    <td>{{ item_user.title }}</td>
-                    <td>{{ item_user.dateCreated|date("d.m.Y") }}</td>
+                    <td>{{ user_collection.title }}</td>
+                    <td>{{ user_collection.dateCreated|date("d.m.Y") }}</td>
                     <td><a href="#delete"><i class="bi bi-trash"></i></a>
-                        <a href="{{ path('edit', {'id': item_user.id }) }}"><i class="bi bi-pencil"></i></a></td>
+                        <a href="{{ path('edit_collection', {'id': user_collection.id }) }}"><i class="bi bi-pencil"></i></a></td>
                 </tr>
 
 

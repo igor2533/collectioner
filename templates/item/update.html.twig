@@ -20,31 +20,99 @@
 
 
 </div>
-
     <div class="form-group">
-        {{ form_row(updateForm.description,{
-            attr: {'class': 'form-control'},
-            label: false,
-            placeholder: 'Title'
-        }) }}
+
+        <div class="col-sm-6 form_left"> {{ form_row(updateForm.image,{
+                attr: {'class': 'form-control'},
+                label: false,
+                placeholder: 'Title'
+            }) }}</div>
+
+
     </div>
 
-    <div class="form-group">
-        {{ form_row(updateForm.category,{
-            attr: {'class': 'form-control'},
-            label: false,
-            placeholder: 'Title'
-        }) }}
+
+
+    <script>
+        $(document).ready(function() {
+            var urlc = '{{ collection.image }}';
+            $("input.file-caption-name").fileinput({
+                // 'showUpload':false,
+                // 'previewFileType':'any',
+                'multiple': true,
+
+                initialPreview: [urlc],
+                initialPreviewAsData: true,
+                initialPreviewConfig: [
+                    {
+                        caption: "Moon.jpg",
+                        downloadUrl: urlc,
+                        description: "<h5>The Moon</h5>The Moon is Earth's only natural satellite and the fifth largest moon in the solar system. The Moon's distance from Earth is about 240,000 miles (385,000 km).",
+                        size: 930321,
+                        width: "120px",
+                        key: 1
+                    },
+                    {
+                        caption: "Earth.jpg",
+                        downloadUrl: urlc,
+                        description: "<h5>The Earth</h5> The Earth is the 3<sup>rd</sup> planet from the Sun and the only astronomical object known to harbor and support life. About 29.2% of Earth's surface is land and remaining 70.8% is covered with water.",
+                        size: 1218822,
+                        width: "120px",
+                        key: 2
+                    }
+                ],
+                deleteUrl: "/site/file-delete",
+                overwriteInitial: false,
+                maxFileSize: 100,
+                initialCaption: "The Moon and the Earth"
+
+
+            });
+        });
+
+    </script>
+
+
+
+    <div class="items row" data-prototype="{{ form_widget(updateForm.items.vars.prototype)|e }}">
+
+
     </div>
+
+
+
+
+
+
+
     <div class="form-group">
-        {{ form_label(updateForm.images) }}
-        {{ form_errors(updateForm.images) }}
+        {{ form_label(updateForm.items) }}
+        {{ form_errors(updateForm.items) }}
 
         <ul>
 
-            {% for image in updateForm.images %}
+            {% for item in updateForm.items %}
 
-{#                <li>{{ form_row(image.name) }}  <a href="{{ path('remove_images') }}" class="remove">X</a></li>#}
+                <li>{{ form_row(item.title) }}</li>
+                <li>{{ form_row(item.description) }}</li>
+
+                <li>{{ form_row(item.images,{
+                            attr: {'class': 'file_upload_update'},
+                            label: false,
+                            placeholder: 'Title'
+                        }) }}
+
+                </li>
+                <li>{{ form_row(item.tag,{
+                        attr: {'class': 'my_tag_for_update'},
+                        label: false,
+                        placeholder: 'Title'
+                    }) }}
+
+                </li>
+
+
+
             {% endfor %}
 
 
@@ -58,11 +126,11 @@
 
 
 
-    <div class="form-group">
-        {{ form_row(updateForm.tag,{
+{#    <div class="form-group">#}
+{#        {{ form_row(updateForm.tag,{#}
 
-        }) }}
-    </div>
+{#        }) }}#}
+{#    </div>#}
     <div class="col-sm-4 form_left">
         <button type="submit" class="btn btn-primary">Uodate</button>
     </div>
@@ -70,6 +138,8 @@
 
 
 </div>
+
+
 
 
 
@@ -93,6 +163,76 @@
 {#    {{ form_end(addTagForm) }}#}
 
 
+    <script>
+
+        const addTagLink = document.createElement('a')
+        addTagLink.classList.add('add_tag_list')
+
+        addTagLink.href='#'
+        addTagLink.innerText='Add item'
+        addTagLink.dataset.collectionHolderClass='items'
+
+
+        //delete
+
+        const tags = document.querySelectorAll('ul.items')
+        tags.forEach((tag) => {
+            addTagFormDeleteLink(tag)
+        })
+
+        // ... the rest of the block from above
+
+
+
+
+
+        const addTagFormDeleteLink = (tagFormLi) => {
+            const removeFormButton = document.createElement('button')
+            removeFormButton.classList
+            removeFormButton.innerText = 'Delete this item'
+
+            tagFormLi.append(removeFormButton);
+
+            removeFormButton.addEventListener('click', (e) => {
+                e.preventDefault()
+                // remove the li for the tag form
+                tagFormLi.remove();
+            });
+        }
+
+
+
+
+
+
+
+
+        //const newLinkLi = document.createElement('div').append(addTagLink)
+
+        const collectionHolder = document.querySelector('div.items')
+        collectionHolder.appendChild(addTagLink)
+
+        const addFormToCollection = (e) => {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+            const item = document.createElement('div');
+
+            item.innerHTML = collectionHolder
+                .dataset
+                .prototype
+                .replace(
+                    /__name__/g,
+                    collectionHolder.dataset.index
+                );
+
+            collectionHolder.appendChild(item);
+
+            collectionHolder.dataset.index++;
+            addTagFormDeleteLink(item);
+        }
+
+        addTagLink.addEventListener("click", addFormToCollection)
+    </script>
 
 
 {% endblock %}

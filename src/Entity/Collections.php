@@ -40,7 +40,7 @@ class Collections
      */
     private $date_created;
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Item", mappedBy="collections",cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Item", mappedBy="collection",cascade={"persist","remove"})
      */
     private $items;
 
@@ -94,16 +94,31 @@ class Collections
         return $this->items;
     }
 
-    public function addItem(Item $item): self
+//    public function addItem(Item $item): self
+//    {
+//        if (!$this->items->contains($item)) {
+//            $this->items[] = $item;
+//
+//            $item->setCollections($this);
+//        }
+//
+//        return $this;
+//    }
+
+
+    public function addItem(Item $item): void
     {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
+//        // for a many-to-many association:
+//        $item->addCollection($this);
 
-            $item->setCollections($this);
-        }
+        // for a many-to-one association:
+        $item->setCollection($this);
 
-        return $this;
+
+        $this->items->add($item);
     }
+
+
 
     public function removeItem(Item $item): self
     {

@@ -50,8 +50,11 @@ class AddCollectionsFormType extends AbstractType
             ->add('items', CollectionType::class, [
                 'entry_type' => AddItemFormType::class,
                 'allow_add'    => true,
+                'allow_delete' => true,
+              //  'by_reference' => false,
 
-            ]);
+            ])
+        ;
 
 
 

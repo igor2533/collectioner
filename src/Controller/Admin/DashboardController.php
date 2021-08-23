@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Collections;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -39,6 +40,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Category', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Tags', 'fas fa-list', Tag::class);
+        yield MenuItem::linkToCrud('Collections', 'fas fa-list', Collections::class);
 
     }
 }

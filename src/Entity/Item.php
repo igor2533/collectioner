@@ -399,6 +399,13 @@ public function removeTag(Tag $tag): self
         return $this->collection;
     }
 
+    public function addCollection(Collections $collection): void
+    {
+        if (!$this->collections->contains($collection)) {
+            $this->collections->add($collection);
+        }
+    }
+
     public function setCollection(?Collections $collection): self
     {
         $this->collection = $collection;

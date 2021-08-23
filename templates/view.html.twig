@@ -17,11 +17,11 @@
 
         <div class="col-sm-4 content_div_item">
             <div class="title_item_box_black col-sm-12"><span>{{ item.title }}</span></div>
-            <div class="date_item_box_black col-sm-12"><span>Коллекция:</span><a href="#">{{ item.collection.title }}</a></div>
+            <div class="date_item_box_black col-sm-12"><span>Коллекция:</span><a href="{{ path('collection-page', {'slug': item.collection.slug}) }}">{{ item.collection.title }}</a></div>
             <div class="description_item_box_black col-sm-12">
                 <span>{{ item.description | raw }}</span></div>
             <div class="date_item_box_black col-sm-12"><span>Опубликовано: {{ item.dateCreated|date("d.m.Y") }}</span></div>
-            <div class="date_item_box_author col-sm-12"><span>Автор: </span><a href="#">{{ item.author }}</a></div>
+            <div class="date_item_box_author col-sm-12"><span>Автор: </span><a href="{{ path('user_items', {'author': item.author.id}) }}">{{ item.author }}</a></div>
 
       <div class="col-sm-12">
           {% for tag in item.tag  %}
