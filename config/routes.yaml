@@ -17,7 +17,7 @@ edit:
     path: /edit/{id}
     controller: App\Controller\IndexController:edit
 remove_image:
-    path: /remove_image
+    path: /remove_image/{image_id}
     controller: App\Controller\IndexController:remove_image
 create_collection:
     path: /create_collection
@@ -25,3 +25,6 @@ create_collection:
 edit_collection:
     path: /edit_collection/{id}
     controller: App\Controller\EditCollectionController:edit_collection
+edit_gallery:
+    path: /edit_gallery/{id}
+    controller: App\Controller\EditGalleryController:edit_gallery

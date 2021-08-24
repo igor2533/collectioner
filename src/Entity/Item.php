@@ -281,6 +281,7 @@ class Item
     {
         return $this->date_created;
         return $tag->title;
+        return $this->id;
 
 
 

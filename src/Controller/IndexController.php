@@ -125,9 +125,6 @@ class IndexController extends AbstractController
 
     }
 
-
-
-
     public function user(CollectionsRepository $collectionsRepository,UserRepository $userRepository,UserInterface $user, Request $request){
 
 
@@ -164,9 +161,11 @@ class IndexController extends AbstractController
          $entityManager->remove($image);
          $entityManager->flush();
 
-         return $this->redirectToRoute('inde');
+         return $this->redirectToRoute('edit_gallery');
 
      }
+
+
 
 
     public function edit(ItemRepository $itemRepository ,Request $request) {

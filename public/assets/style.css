@@ -239,3 +239,9 @@ footer {
     margin-top: 50px;
 }
 /* end comment */
+
+
+.col-sm-3.my_col_img {
+    float: left;
+    padding: 10px;
+}

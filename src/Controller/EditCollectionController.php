@@ -38,7 +38,7 @@ class EditCollectionController extends AbstractController
         ));
 
 
-        $items = $itemRepository->findOneBy(array(
+        $items = $itemRepository->findBy(array(
             'collection' => $collection->getId()
         ));
 
@@ -73,30 +73,7 @@ class EditCollectionController extends AbstractController
             foreach($collection->getItems() as $item) {
 
 
-   foreach ($item->getImages() as $image){
-      print_r($image);
-   }
 
-die();
-                if($item->getImages() == null) {
-                    $images = $editForm['items']['undefined']['images']->getData();
-
-//                print_r($images);
-//                die();
-
-                    foreach ($images as $image) {
-                        $my_generate = random_int(100000000, 900000000);
-                        Uploader::upload($image, [
-                            'public_id' => $my_generate,
-                            'version' => '99999999999999'
-                        ]);
-                        $link_cloud = 'https://res.cloudinary.com/karasika/image/upload/' . strval($my_generate) . "." . $image->getClientOriginalExtension();
-                        $img = new Images();
-                        $img->setName($link_cloud);
-                        $item->addImage($img);
-                    }
-
-                }
                 $slugify = new Slugify();
 
 
