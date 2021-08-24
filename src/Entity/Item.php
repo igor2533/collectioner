@@ -279,9 +279,10 @@ class Item
 
     public function __toString()
     {
-        return $this->date_created;
-        return $tag->title;
+        //return $this->date_created;
+        //return $tag->title;
         return $this->id;
+
 
 
 

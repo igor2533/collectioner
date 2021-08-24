@@ -8,7 +8,7 @@ collection-page:
     path: /collection/{slug}
     controller: App\Controller\IndexController:collection
 create_item:
-    path: /add_item
+    path: /add_item/{id_collection}
     controller: App\Controller\AddItemController:add_item
 user_items:
     path: /user/{author}
@@ -19,6 +19,12 @@ edit:
 remove_image:
     path: /remove_image/{image_id}
     controller: App\Controller\IndexController:remove_image
+remove_item:
+    path: /remove_item/{item_id}
+    controller: App\Controller\IndexController:remove_item
+remove_collection:
+    path: /remove_collection/{collection_id}
+    controller: App\Controller\IndexController:remove_collection
 create_collection:
     path: /create_collection
     controller: App\Controller\AddCollectionController:add_collection

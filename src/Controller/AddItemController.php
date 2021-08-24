@@ -6,6 +6,7 @@ use App\Entity\Item;
 use App\Entity\Images;
 use App\Form\AddItemFormType;
 use App\Form\TagType;
+use App\Repository\CollectionsRepository;
 use App\Repository\ItemRepository;
 use ContainerBIxhQvB\getSpeicher210Cloudinary_ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,7 @@ class AddItemController extends AbstractController
 {
 
     #[Route('/add_item', name: 'app_add_item')]
-    public function add_item(Request $request,UserInterface $user,ItemRepository $itemRepository): Response
+    public function add_item(Request $request,UserInterface $user,ItemRepository $itemRepository,CollectionsRepository $collectionsRepository): Response
     {
         $item = new Item();
         $form = $this->createForm(AddItemFormType::class, $item);
@@ -41,6 +42,9 @@ class AddItemController extends AbstractController
             }
             $slugify = new Slugify();
 
+            $collection = $collectionsRepository->findOneBy(array(
+                'id' => $request->get('id_collection')
+            ));
 
             $new_slug = $slugify->slugify($item->getTitle()."_".$item->getId());
             $i = 1;
@@ -62,6 +66,8 @@ class AddItemController extends AbstractController
 
 
 
+
+            $item->setCollection($collection);
             $item->setSlug($new_slug);
             $item->setDateCreated(new \DateTime());
             $item->setAuthor($this->getUser());

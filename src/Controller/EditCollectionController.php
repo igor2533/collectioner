@@ -9,7 +9,7 @@ use App\Form\AddItemFormType;
 use App\Entity\Collections;
 
 
-
+use App\Form\EditCollectionsFormType;
 use App\Form\TagType;
 use App\Repository\ItemRepository;
 use App\Repository\CollectionsRepository;
@@ -55,7 +55,7 @@ class EditCollectionController extends AbstractController
             $originalItems->add($item);
 
         }
-        $editForm = $this->createForm(AddCollectionsFormType::class, $collection);
+        $editForm = $this->createForm(EditCollectionsFormType::class, $collection);
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 

@@ -42,7 +42,7 @@ class ItemCrudController extends AbstractCrudController
 
             TextField::new('title'),
             TextEditorField::new('description'),
-             AssociationField::new('category'),
+             AssociationField::new('collection'),
             ChoiceField::new('status')
                 ->setChoices([  'Опубликовано' => '1',
                         'Не опубликовано' => '0',
@@ -55,10 +55,7 @@ class ItemCrudController extends AbstractCrudController
             TextField::new('year'),
 
             TextField::new('slug'),
-            ImageFields::new('image')
-                ->setBasePath(' uploads/images/')
-                ->setUploadDir('public/uploads')->setUploadedFileNamePattern('[randomhash].[extension]')
-                ->setRequired(false),
+
 
         ];
     }

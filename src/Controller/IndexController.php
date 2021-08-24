@@ -165,7 +165,39 @@ class IndexController extends AbstractController
 
      }
 
+    public function remove_item(ItemRepository $itemRepository,Request $request) {
 
+        $entityManager = $this->getDoctrine()->getManager();
+        $item = $entityManager->getRepository(Item::class)->find($request->get('item_id'));
+        if (!$item) {
+            throw $this->createNotFoundException(
+                'No item found for id '.$request->get('item_id')
+            );
+        }
+
+        $entityManager->remove($item);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('index');
+
+    }
+
+    public function remove_collection(CollectionsRepository $collectionsRepository,Request $request) {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $collection = $entityManager->getRepository(Collection::class)->find($request->get('collection_id'));
+        if (!$collection) {
+            throw $this->createNotFoundException(
+                'No collection found for id '.$request->get('collection_id')
+            );
+        }
+
+        $entityManager->remove($collection);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('index');
+
+    }
 
 
     public function edit(ItemRepository $itemRepository ,Request $request) {
@@ -202,18 +234,18 @@ class IndexController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $images = $form->get('images')->getData();
-            foreach($images as $image){
-                $my_generate = random_int(100000000, 900000000);
-                Uploader::upload($image,[
-                    'public_id' => $my_generate,
-                    'version' => '99999999999999'
-                ]);
-                $link_cloud = 'https://res.cloudinary.com/karasika/image/upload/'.strval($my_generate).".".$image->getClientOriginalExtension();
-                $img = new Images();
-                $img->setName($link_cloud);
-                $item->addImage($img);
-            }
+//            $images = $form->get('images')->getData();
+//            foreach($images as $image){
+//                $my_generate = random_int(100000000, 900000000);
+//                Uploader::upload($image,[
+//                    'public_id' => $my_generate,
+//                    'version' => '99999999999999'
+//                ]);
+//                $link_cloud = 'https://res.cloudinary.com/karasika/image/upload/'.strval($my_generate).".".$image->getClientOriginalExtension();
+//                $img = new Images();
+//                $img->setName($link_cloud);
+//                $item->addImage($img);
+//            }
 
             $em->flush();
             //return new Response('News updated successfully');
@@ -224,9 +256,10 @@ class IndexController extends AbstractController
         //return $this->render('/item/update.html.twig', $build);
 
 
-        return $this->render('/item/update.html.twig',
+        return $this->render('/item/update_item.html.twig',
             [
-                'updateForm' => $form->createView(),
+                'updateItemForm' => $form->createView(),
+                'item' => $item
 
 
             ]);
