@@ -9,7 +9,7 @@ collection-page:
     controller: App\Controller\IndexController:collection
 create_item:
     path: /add_item/{id_collection}
-    controller: App\Controller\AddItemController:add_item
+    controller: App\Controller\IndexController:add_item
 user_items:
     path: /user/{author}
     controller: App\Controller\IndexController:user
@@ -27,10 +27,10 @@ remove_collection:
     controller: App\Controller\IndexController:remove_collection
 create_collection:
     path: /create_collection
-    controller: App\Controller\AddCollectionController:add_collection
+    controller: App\Controller\IndexController:add_collection
 edit_collection:
     path: /edit_collection/{id}
-    controller: App\Controller\EditCollectionController:edit_collection
+    controller: App\Controller\IndexController:edit_collection
 edit_gallery:
     path: /edit_gallery/{id}
-    controller: App\Controller\EditGalleryController:edit_gallery
+    controller: App\Controller\IndexController:edit_gallery
