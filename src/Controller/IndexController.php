@@ -100,6 +100,10 @@ class IndexController extends AbstractController
 
         return $new_slug;
 
+
+
+
+
     }
 
 
@@ -253,7 +257,6 @@ class IndexController extends AbstractController
 
 
 
-
     #[Route('/collection_create', name: 'create_collection')]
     public function add_collection(Request $request,ItemRepository $itemRepository,CollectionsRepository $collectionsRepository): Response
     {
@@ -266,10 +269,8 @@ class IndexController extends AbstractController
             $image = $form->get('image')->getData();
            $link_cloud = $this->uploader_image($image);
             $collection->setImage($link_cloud);
-
-
-            $slug_collection = $this->addSlugInObj($request,$item,$itemRepository);
-            $collection->setSlug($slug_collection);
+            $new_slug = $this->addSlugInObj($request,$collection,$collectionsRepository);
+            $collection->setSlug($new_slug);
             $collection->setDateCreated(new \DateTime());
             $collection->setAuthor($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
@@ -278,7 +279,7 @@ class IndexController extends AbstractController
             foreach($collection->getItems() as $item){
                 $images =  $form['items']['undefined']['images']->getData();
                 foreach($images as $image){
-                    $my_generate = random_int(100000000, 900000000);
+
                    $link_cloud = $this->uploader_image($image);
                     $img = new Images();
                     $img->setName($link_cloud);
