@@ -38,6 +38,7 @@ class AddItemController extends AbstractController
                 $link_cloud = 'https://res.cloudinary.com/karasika/image/upload/'.strval($my_generate).".".$image->getClientOriginalExtension();
                 $img = new Images();
                 $img->setName($link_cloud);
+                $img->setAuthor($this->getUser());
                 $item->addImage($img);
             }
             $slugify = new Slugify();

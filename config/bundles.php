@@ -12,4 +12,5 @@ return [
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
     Speicher210\CloudinaryBundle\Speicher210CloudinaryBundle::class => ['all' => true],
+    Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
 ];

@@ -16,6 +16,12 @@ class Images
      */
     private $id;
 
+
+    /**
+     * @ORM\ManyToOne (targetEntity="App\Entity\User", inversedBy="images")
+     */
+    private $author;
+
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
      */
@@ -53,6 +59,18 @@ class Images
     public function setItem(?Item $item): self
     {
         $this->item = $item;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

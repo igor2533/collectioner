@@ -27,7 +27,7 @@
 
                     <td>{{ user_collection.title }}</td>
                     <td>{{ user_collection.dateCreated|date("d.m.Y") }}</td>
-                    <td><a href="{{ path('remove_collection', {'collection_id': user_collection.id }) }}"><i class="bi bi-trash"></i></a>
+                    <td><a href="{{ path('remove_collection', {'id': user_collection.id }) }}"><i class="bi bi-trash"></i></a>
                         <a href="{{ path('edit_collection', {'id': user_collection.id }) }}"><i class="bi bi-pencil"></i></a></td>
                 </tr>
 

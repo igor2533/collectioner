@@ -30,6 +30,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $items;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="user")
+     */
+    private $images;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Collections", mappedBy="user")
      */
     private $collections;
@@ -148,6 +154,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->items = new ArrayCollection();
         $this->collections = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function __toString()
@@ -230,6 +237,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($collection->getUser() === $this) {
                 $collection->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getUser() === $this) {
+                $image->setUser(null);
             }
         }
 

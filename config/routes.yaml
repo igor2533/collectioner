@@ -17,13 +17,13 @@ edit:
     path: /edit/{id}
     controller: App\Controller\IndexController:edit
 remove_image:
-    path: /remove_image/{image_id}
+    path: /remove_image/{id}
     controller: App\Controller\IndexController:remove_image
 remove_item:
-    path: /remove_item/{item_id}
+    path: /remove_item/{id}
     controller: App\Controller\IndexController:remove_item
 remove_collection:
-    path: /remove_collection/{collection_id}
+    path: /remove_collection/{id}
     controller: App\Controller\IndexController:remove_collection
 create_collection:
     path: /create_collection
