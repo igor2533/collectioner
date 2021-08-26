@@ -161,7 +161,8 @@ class IndexController extends AbstractController
     public function user(CollectionsRepository $collectionsRepository,UserRepository $userRepository,UserInterface $user, Request $request){
 
 
-        $user_collections = $this->find_object_one($request, $collectionsRepository,'author','author');
+
+        $user_collections = $this->find_objects($request, $collectionsRepository,'author','author');
         $current_user = $this->find_object_one($request, $userRepository,'id','author');
 
         return $this->render('user.html.twig',
