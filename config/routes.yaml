@@ -34,3 +34,7 @@ edit_collection:
 edit_gallery:
     path: /edit_gallery/{id}
     controller: App\Controller\IndexController:edit_gallery
+search_form_base:
+    path: /search/
+    controller: App\Controller\IndexController:search_form_base
+

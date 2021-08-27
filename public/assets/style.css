@@ -245,3 +245,8 @@ footer {
     float: left;
     padding: 10px;
 }
+
+form.form-inline.my-2.my-lg-0 {
+    position: absolute;
+    right: 19px;
+}

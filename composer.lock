@@ -1334,16 +1334,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.9.4",
+            "version": "2.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "b19a13f4edfaa5806109cd899f5912a7df1547b5"
+                "reference": "77cc86ed880e3f1f6c9c5819e131a8aaeeeee0da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/b19a13f4edfaa5806109cd899f5912a7df1547b5",
-                "reference": "b19a13f4edfaa5806109cd899f5912a7df1547b5",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/77cc86ed880e3f1f6c9c5819e131a8aaeeeee0da",
+                "reference": "77cc86ed880e3f1f6c9c5819e131a8aaeeeee0da",
                 "shasum": ""
             },
             "require": {
@@ -1422,9 +1422,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/2.9.4"
+                "source": "https://github.com/doctrine/orm/tree/2.9.5"
             },
-            "time": "2021-08-11T20:53:03+00:00"
+            "time": "2021-08-23T10:20:22+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1572,16 +1572,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v3.5.6",
+            "version": "v3.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "263cf54119497f5ea32f02af1dba2e4999a002ae"
+                "reference": "3499d3e954f95f3e12bebafbdafb71289f1a1435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/263cf54119497f5ea32f02af1dba2e4999a002ae",
-                "reference": "263cf54119497f5ea32f02af1dba2e4999a002ae",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/3499d3e954f95f3e12bebafbdafb71289f1a1435",
+                "reference": "3499d3e954f95f3e12bebafbdafb71289f1a1435",
                 "shasum": ""
             },
             "require": {
@@ -1655,7 +1655,7 @@
             ],
             "support": {
                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.5.6"
+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.5.7"
             },
             "funding": [
                 {
@@ -1663,7 +1663,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-11T18:47:50+00:00"
+            "time": "2021-08-17T10:36:05+00:00"
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
@@ -2100,30 +2100,30 @@
         },
         {
             "name": "psr/log",
-            "version": "2.0.0",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376"
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/ef29f6d262798707a9edd554e2b82517ef3a9376",
-                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.0"
+                "php": ">=5.3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "src"
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2144,9 +2144,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/2.0.0"
+                "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
-            "time": "2021-07-14T16:41:46+00:00"
+            "time": "2021-05-03T11:20:27+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3501,16 +3501,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.13.4",
+            "version": "v1.14.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "d81196c3f3b544e32997b67e955fb8291fdfe770"
+                "reference": "ddddba0343a225ba5fa638b64b132fc8754a9579"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/d81196c3f3b544e32997b67e955fb8291fdfe770",
-                "reference": "d81196c3f3b544e32997b67e955fb8291fdfe770",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/ddddba0343a225ba5fa638b64b132fc8754a9579",
+                "reference": "ddddba0343a225ba5fa638b64b132fc8754a9579",
                 "shasum": ""
             },
             "require": {
@@ -3549,7 +3549,7 @@
             "description": "Composer plugin for Symfony",
             "support": {
                 "issues": "https://github.com/symfony/flex/issues",
-                "source": "https://github.com/symfony/flex/tree/v1.13.4"
+                "source": "https://github.com/symfony/flex/tree/v1.14.4"
             },
             "funding": [
                 {
@@ -3565,7 +3565,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-03T08:14:48+00:00"
+            "time": "2021-08-24T18:59:38+00:00"
         },
         {
             "name": "symfony/form",

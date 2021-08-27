@@ -14,14 +14,16 @@ use App\Entity\Images;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Entity\User;
+use App\Extensions\Doctrine\MatchAgainst;
 use App\Form\AddCollectionsFormType;
 use App\Form\AddItemFormType;
 use App\Form\CommentFormType;
-
 use App\Form\EditCollectionsFormType;
 use App\Form\EditGalleryFormType;
 use App\Form\EditItemFormType;
+use App\Form\SearchFormType;
 use App\Repository\CollectionsRepository;
+use App\Repository\CommentsRepository;
 use App\Repository\ImagesRepository;
 use App\Repository\ItemRepository;
 use App\Repository\CategoryRepository;
@@ -30,10 +32,14 @@ use App\Form\UpdateImagesFormType;
 use App\Repository\UserRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
+//use Doctrine\ORM\Tools\Pagination\Paginator;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use PhpParser\Node\Scalar\MagicConst\File;
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -107,13 +113,17 @@ class IndexController extends AbstractController
     }
 
 
-    public function index(CollectionsRepository $collectionsRepository,CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
+    public function index(Request $request,CollectionsRepository $collectionsRepository,CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
+
+
         $collections = $collectionsRepository->findAll();
+
 
         $items = $itemRepository->findAll();
         return $this->render('home.html.twig',
         ['collections' => $collections,
-            'items'=> $items
+            'items'=> $items,
+
             ]);
 
     }
@@ -407,6 +417,26 @@ class IndexController extends AbstractController
 
 
         ]);
+    }
+
+
+
+    public function search_form_base(Request $request,ItemRepository $itemRepository)
+    {
+
+
+        $items = null;
+        $query = $request->query->get('q');
+        $items = $itemRepository->findByExampleField($query);
+        return $this->render('/item/search.html.twig', [
+
+            'items' => $items,
+            'query' => $query,
+            'count' => count($items)
+
+        ]);
+
+
     }
 
 

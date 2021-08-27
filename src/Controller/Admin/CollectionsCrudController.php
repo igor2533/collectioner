@@ -10,8 +10,10 @@ use App\Form\AddItemFormType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
 
 class CollectionsCrudController extends AbstractCrudController
 {
@@ -20,12 +22,24 @@ class CollectionsCrudController extends AbstractCrudController
         return Collections::class;
     }
 
+//    public function createEntity(string $entityFqcn)
+//    {
+//
+//        $collection = new Collections::class;
+//
+//
+//
+//
+//        return $collection;
+//    }
 
     public function configureFields(string $pageName): iterable
     {
         return [
 
             TextField::new('title'),
+
+            AssociationField::new('author'),
 
 
         ];

@@ -13,6 +13,7 @@ use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
+ * @ORM\Table(name="item", indexes={@ORM\Index(columns={"title", "description"}, flags={"fulltext"})})
  */
 class Item
 {

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Add Item{% endblock %}
+{% block body %}
+{% set url_not_image = 'https://thumbs.dreamstime.com/b/no-angry-person-mosaic-grunge-not-available-stamp-seal-lines-mosaic-no-angry-person-pictogram-red-not-available-seal-171894178.jpg' %}
+
+
+    <h1 class="title_collection_page">Рузультаты поиска по запросу: {{ query }} ({{ count }})</h1>
+    <div class="row">
+
+        {%  for item in items %}
+            <div class="col-sm-4 sm-item">
+                <a href="/item/{{ item.slug }}" class="href_item">
+                    <div class="box content col-sm-12" style="background: url('{% if item.images is not defined %}{{  item.images['0'].name }}{% else %}{{ url_not_image }}{% endif %}')no-repeat;">
+                        <div class="title_item_box col-sm-12"><span>{{ item.title }}</span></div>
+                        {#                    <div class="description_item_box col-sm-12">#}
+                        {#                        <span>{{ item.description }}</span></div>#}
+                        <div class="date_item_box col-sm-12"><span>{{ item.dateCreated|date("d.m.Y") }}</span></div>
+                    </div>
+                </a>
+            </div>
+        {%  endfor %}
+
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+
