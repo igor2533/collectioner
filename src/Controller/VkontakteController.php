@@ -64,7 +64,7 @@ class VkontakteController extends AbstractController
 
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
-            var_dump($user_vk); die;
+            var_dump($user_vk->getCity()); die;
             // ...
         } catch (IdentityProviderException $e) {
             // something went wrong!
