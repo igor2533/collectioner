@@ -49,16 +49,16 @@ class VkontakteController extends AbstractController
             /** @var \League\OAuth2\Client\Provider\VkontakteUser $user */
             $user_vk = $client->fetchUser();
 
-            $user = new User();
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $accessToken = $client->getAccessToken();
-            $user->setRefreshToken($accessToken->getRefreshToken());
-            $user->setEmail($user_vk);
-            $entityManager->flush();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+//            $user = new User();
+//
+//            $entityManager = $this->getDoctrine()->getManager();
+//            $accessToken = $client->getAccessToken();
+//            $user->setRefreshToken($accessToken->getRefreshToken());
+//            $user->setEmail($user_vk);
+//            $entityManager->flush();
+//            $entityManager = $this->getDoctrine()->getManager();
+//            $entityManager->persist($user);
+//            $entityManager->flush();
 
             return $this->redirectToRoute('index');
 
