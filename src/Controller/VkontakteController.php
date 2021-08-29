@@ -39,10 +39,11 @@ class VkontakteController extends AbstractController
         // leave this method blank and create a Guard authenticator
         // (read below)
 
-        /** @var \KnpU\OAuth2ClientBundle\Client\Provider\FacebookClient $client */
+        /** @var \KnpU\OAuth2ClientBundle\Client\ProviderVkontakteClient $client */
         $client = $clientRegistry->getClient('vkontakte');
 
         try {
+
             // the exact class depends on which provider you're using
             /** @var \League\OAuth2\Client\Provider\VkontakteUser $user */
             $user = $client->fetchUser();
