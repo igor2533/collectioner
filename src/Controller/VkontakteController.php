@@ -43,22 +43,25 @@ class VkontakteController extends AbstractController
 
         /** @var \KnpU\OAuth2ClientBundle\Client\Provider\VKontakteClient $client */
         $client = $clientRegistry->getClient('vkontakte_main');
+        $user_vk = $client->fetchUser();
+
+        $user = new User();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $accessToken = $client->getAccessToken();
+        $user->setRefreshToken('9999');
+        $user->setEmail('ouuhhuuh');
+        $entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+
 
         try {
             // the exact class depends on which provider you're using
             /** @var \League\OAuth2\Client\Provider\VkontakteUser $user */
-            $user_vk = $client->fetchUser();
 
-            $user = new User();
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $accessToken = $client->getAccessToken();
-            $user->setRefreshToken('9999');
-            $user->setEmail('ouuhhuuh');
-            $entityManager->flush();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
 
             //return $this->redirectToRoute('index');
 
