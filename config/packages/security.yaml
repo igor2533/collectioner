@@ -7,8 +7,8 @@ security:
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        oauth:
-            id: knpu.oauth2.client.vkontakte_main
+#        oauth:
+#            id: knpu.oauth2.client.vkontakte_main
         database_users:
             entity: { class: App\Entity\User, property: email }
         # used to reload user from session & other features (e.g. switch_user)
@@ -39,5 +39,4 @@ security:
     access_control:
 
          #- { path: ^/api/(post|comment)/\d+$, roles: ROLE_USER }
-         - { path: ^/item, roles: [ROLE_ADMIN,ROLE_USER]}
          - { path: ^/admin, roles: ROLE_ADMIN }

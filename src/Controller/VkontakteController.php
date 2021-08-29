@@ -48,6 +48,7 @@ class VkontakteController extends AbstractController
 
 
 
+
         try {
             // the exact class depends on which provider you're using
             /** @var \League\OAuth2\Client\Provider\VkontakteUser $user */

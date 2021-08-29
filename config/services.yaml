@@ -9,7 +9,7 @@ imports:
     - { resource: 'config.yml' }
 services:
 #    App\Client\MyVkontakteClient:
-#        decorates: knpu.oauth2.client.vkontakte
+#        decorates: knpu.oauth2.client.vkontakte_main
 
     # default configuration for services in *this* file
     _defaults:

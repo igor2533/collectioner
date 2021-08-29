@@ -38,7 +38,7 @@
 
     </div>
 
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <div class="col-sm-12 comment_box">
 
         <h2>Комментарии</h2>
@@ -88,18 +88,12 @@
 
         </div>
     </div>
+ {% endif %}
 
 
 
 
 
-
-
-
-    <div class="row">
-
-
-    </div>
 
 
 

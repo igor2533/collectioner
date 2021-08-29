@@ -50,9 +50,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $email;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",nullable=true)
      */
     private $refreshToken;
+
+    /**
+     * @ORM\Column (type="string",nullable=true)
+     */
+    private $vkontakteId;
 
     /**
      * @ORM\Column(type="json")
@@ -286,6 +291,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRefreshToken(string $refreshToken): self
     {
         $this->refreshToken = $refreshToken;
+
+        return $this;
+    }
+
+    public function getVkontakteId(): ?string
+    {
+        return $this->vkontakteId;
+    }
+
+    public function setVkontakteId(string $vkontakteId): self
+    {
+        $this->vkontakteId = $vkontakteId;
 
         return $this;
     }

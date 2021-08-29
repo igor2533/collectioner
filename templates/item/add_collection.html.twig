@@ -3,7 +3,7 @@
 {% block title %}Add Item{% endblock %}
 
 {% block body %}
-
+<div class="container_add_collection">
     <h1>Add Collection</h1>
     {% form_theme addCollectionForm 'foundation_5_layout.html.twig' %}
     {{ form_start(addCollectionForm) }}
@@ -39,16 +39,16 @@
         </div>
 
 
-    <div class="col-sm-4 form_left">
-        <button type="submit" class="btn btn-primary">Добавить</button>
+    <div class="col-sm-12 form_left">
+        <button type="submit" class="btn btn-primary">Добавить коллекцию</button>
     </div>
 
 <script>
     const addTagLink = document.createElement('a')
-    addTagLink.classList.add('add_tag_list')
+    addTagLink.classList.add('add_tag_list','btn','bnt-sucess')
 
     addTagLink.href='#'
-    addTagLink.innerText='Add item'
+    addTagLink.innerText='Добавить Item'
     addTagLink.dataset.collectionHolderClass='items'
 
     //const newLinkLi = document.createElement('div').append(addTagLink)
@@ -105,7 +105,7 @@
 
 
 
-
+</div>
 {% endblock %}
 
 

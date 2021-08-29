@@ -46,10 +46,12 @@ class MyVkontakteAuthenticator extends OAuth2Authenticator
                 /** @var VkontakteUser $vkontakteUser */
                 $vkontakteUser = $client->fetchUserFromToken($accessToken);
 
-                $email = $vkontakteUser->getEmail();
+//                var_dump($vkontakteUser->getFirstName());
+//                die();
+                $email = $vkontakteUser->getFirstName();
 
                 // 1) have they logged in with Facebook before? Easy!
-                $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['vkontakteId' => $vkontakteUser->getId()]);
+                $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['refreshToken' => $vkontakteUser->getId()]);
 
                 if ($existingUser) {
                     return $existingUser;
@@ -58,11 +60,26 @@ class MyVkontakteAuthenticator extends OAuth2Authenticator
                 // 2) do we have a matching user by email?
                 $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
 
+                if($user === null){
+                $user = new User();
+                    $user->setRefreshToken($vkontakteUser->getId());
+                    $user->setEmail($vkontakteUser->getFirstName());
+                    $user->setRoles(array('ROLE_USER'));
+                    $user->setStatus(1);
+                    $user->setPassword($vkontakteUser->getId());
+                    $this->entityManager->persist($user);
+                    $this->entityManager->flush();
+                }
+
+                else {
+                    $user->setRefreshToken($vkontakteUser->getId());
+                    $this->entityManager->persist($user);
+                    $this->entityManager->flush();
+                }
+
                 // 3) Maybe you just want to "register" them by creating
                 // a User object
-                $user->setVkontakteId($vkontakteUser->getId());
-                $this->entityManager->persist($user);
-                $this->entityManager->flush();
+
 
                 return $user;
             })

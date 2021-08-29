@@ -250,3 +250,54 @@ form.form-inline.my-2.my-lg-0 {
     position: absolute;
     right: 19px;
 }
+
+@media  (min-width: 1100px) {
+    .container.register_class_container {
+        width: 50%;
+    }
+    .container.login_container {
+        width: 50%;
+    }
+
+
+}
+
+.col-sm-12.social_columns div {
+    float: left;
+}
+.container.login_container button {
+    /*margin-top: 20px;*/
+    line-height: 1.3;
+    margin-bottom: 13px;
+    font-size: 16px;
+}
+.container.login_container {
+    margin-top: 20px;
+}
+.col-sm-12.social_columns>div {
+    float: left;
+    font-size: 16px;
+}
+.col-sm-12.social_columns {
+    margin-top:20px;
+}
+
+.container_add_collection div.form-group {
+    margin-top: 20px;
+}
+.col-sm-12.form_left>button.btn {
+    float: right;
+}
+.items.row a.add_tag_list {
+    background: #43c013;
+    border-radius: 5px;
+    color: white;
+    width: 146px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.col-sm-12.form_left {
+    width: 100%;
+    margin-bottom: 41px;
+}

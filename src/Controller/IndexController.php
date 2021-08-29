@@ -142,7 +142,7 @@ class IndexController extends AbstractController
     }
 
 
-    public function show(ItemRepository $itemRepository,string $slug, Request $request,UserInterface $user):Response {
+    public function show(ItemRepository $itemRepository,string $slug, Request $request):Response {
 
         $item = $this->find_object_one($request, $itemRepository,'slug','slug');
         $comment = new Comments();
@@ -168,7 +168,7 @@ class IndexController extends AbstractController
 
     }
 
-    public function user(CollectionsRepository $collectionsRepository,UserRepository $userRepository,UserInterface $user, Request $request){
+    public function user(CollectionsRepository $collectionsRepository,UserRepository $userRepository,Request $request){
 
 
 
@@ -322,11 +322,13 @@ class IndexController extends AbstractController
     {
 
         $collection = $this->find_object_one($request,$collectionsRepository,'id','id');
+        $this->check_security($collection);
         $items = $collection->getItems();
         $originalItems = new ArrayCollection();
         foreach ($items as $item) {
             $originalItems->add($item);
         }
+
         $editForm = $this->createForm(EditCollectionsFormType::class, $collection);
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -407,6 +409,7 @@ class IndexController extends AbstractController
     public function edit_gallery(Request $request, ImagesRepository $imagesRepository,ItemRepository $itemRepository): Response
     {
         $item = $this->find_object_one($request,$itemRepository,'id','id');
+        $this->check_security($item);
         $images = $this->find_objects($request,$imagesRepository,'item','id');
         $editGalleryForm = $this->createForm(EditGalleryFormType::class, $item);
         $editGalleryForm->handleRequest($request);
