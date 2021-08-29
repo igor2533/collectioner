@@ -21,9 +21,8 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            guard:
-                authenticators:
-                    - App\Security\MyVkontakteAuthenticator
+            custom_authenticators:
+                - App\Security\MyVkontakteAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
