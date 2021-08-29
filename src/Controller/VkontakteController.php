@@ -1,11 +1,13 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class VkontakteController extends AbstractController
 {
@@ -33,7 +35,7 @@ class VkontakteController extends AbstractController
      *
      * @Route("/connect/vkontakte/check", name="connect_vkontakte_check")
      */
-    public function connectCheckAction(Request $request, ClientRegistry $clientRegistry)
+    public function connectCheckAction(Request $request, ClientRegistry $clientRegistry,UserPasswordEncoderInterface $passwordEncoder)
     {
         // ** if you want to *authenticate* the user, then
         // leave this method blank and create a Guard authenticator
@@ -45,11 +47,24 @@ class VkontakteController extends AbstractController
         try {
             // the exact class depends on which provider you're using
             /** @var \League\OAuth2\Client\Provider\VkontakteUser $user */
-            $user = $client->fetchUser();
+            $user_vk = $client->fetchUser();
+
+            $user = new User();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $accessToken = $client->getAccessToken();
+            $user->setRefreshToken($accessToken->getRefreshToken());
+            $user->setEmail($user_vk);
+            $entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index');
 
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
-            var_dump($user); die;
+            var_dump($user_vk); die;
             // ...
         } catch (IdentityProviderException $e) {
             // something went wrong!

@@ -49,6 +49,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $refreshToken;
 
     /**
      * @ORM\Column(type="json")
@@ -270,6 +274,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $image->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRefreshToken(): ?string
+    {
+        return $this->refreshToken;
+    }
+
+    public function setRefreshToken(string $refreshToken): self
+    {
+        $this->refreshToken = $refreshToken;
 
         return $this;
     }

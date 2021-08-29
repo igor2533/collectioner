@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MyVkontakteAuthenticator extends OAuth2Authenticator
 {
@@ -73,7 +74,15 @@ class MyVkontakteAuthenticator extends OAuth2Authenticator
         // change "app_homepage" to some route in your app
         $targetUrl = $this->router->generate('index');
 
+
+
         return new RedirectResponse($targetUrl);
+
+
+
+
+
+
 
         // or, on success, let the request continue to be handled by the controller
         //return null;
