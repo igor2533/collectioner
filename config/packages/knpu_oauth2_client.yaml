@@ -1,0 +1,14 @@
+knpu_oauth2_client:
+    clients:
+        vkontakte:
+            # must be "vkontakte" - it activates that type!
+            type: vkontakte
+            # add and set these environment variables in your .env files
+            client_id: '%env(OAUTH_VKONTAKTE_ID)%'
+            client_secret: '%env(OAUTH_VKONTAKTE_SECRET)%'
+            # a route name you'll create
+            redirect_route: connect_vkontakte_check
+            redirect_params: { }
+            # whether to check OAuth2 "state": defaults to true
+            # use_state: true
+        # configure your clients as described here: https://github.com/knpuniversity/oauth2-client-bundle#configuration

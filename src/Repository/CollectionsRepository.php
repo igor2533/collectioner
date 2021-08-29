@@ -45,15 +45,13 @@ class CollectionsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
 
-            ->leftJoin('c.items', 'item')
-            ->addSelect('COUNT(c.id) AS ccount')
-            ->groupBy('c.id')
-            ->orderBy('ccount', 'DESC')
+//            ->leftJoin('c.items', 'item')
+//            ->orderBy('item', 'DESC')
 
 
 
 
-            ->setMaxResults(10)
+//            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }
