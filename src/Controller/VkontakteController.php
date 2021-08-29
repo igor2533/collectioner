@@ -49,23 +49,23 @@ class VkontakteController extends AbstractController
             /** @var \League\OAuth2\Client\Provider\VkontakteUser $user */
             $user_vk = $client->fetchUser();
 
-//            $user = new User();
-//
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $accessToken = $client->getAccessToken();
-//            $user->setRefreshToken($accessToken->getRefreshToken());
-//            $user->setEmail($user_vk);
-//            $entityManager->flush();
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $entityManager->persist($user);
-//            $entityManager->flush();
+            $user = new User();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $accessToken = $client->getAccessToken();
+            $user->setRefreshToken($accessToken->getRefreshToken());
+            $user->setEmail($user_vk->getFirstName());
+            $entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             //return $this->redirectToRoute('index');
 
 
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
-            var_dump($user_vk->getCity('title')); die;
+            var_dump($user_vk->getCity()); die;
             // ...
         } catch (IdentityProviderException $e) {
             // something went wrong!
