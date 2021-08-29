@@ -62,9 +62,10 @@ class VkontakteController extends AbstractController
 
             //return $this->redirectToRoute('index');
 
+
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
-            var_dump($user_vk->getCity()); die;
+            var_dump($user_vk->getCity('title')); die;
             // ...
         } catch (IdentityProviderException $e) {
             // something went wrong!
