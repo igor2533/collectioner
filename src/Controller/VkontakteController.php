@@ -45,16 +45,6 @@ class VkontakteController extends AbstractController
         $client = $clientRegistry->getClient('vkontakte_main');
         $user_vk = $client->fetchUser();
 
-        $user = new User();
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $accessToken = $client->getAccessToken();
-        $user->setRefreshToken('9999');
-        $user->setEmail('ouuhhuuh');
-        $entityManager->flush();
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
 
 
 
