@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Item;
 use App\Entity\Collections;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -35,6 +36,28 @@ class CollectionsRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return Collections[] Returns an array of Item objects
+     */
+
+    public function findByAllSortCountItems()
+    {
+        return $this->createQueryBuilder('c')
+
+            ->leftJoin('c.items', 'item')
+            ->addSelect('COUNT(c.id) AS ccount')
+            ->groupBy('c.id')
+            ->orderBy('ccount', 'DESC')
+
+
+
+
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Collection

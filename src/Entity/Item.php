@@ -39,6 +39,7 @@ class Item
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Collections", inversedBy="item")
+     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $collection;
 

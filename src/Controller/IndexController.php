@@ -116,10 +116,10 @@ class IndexController extends AbstractController
     public function index(Request $request,CollectionsRepository $collectionsRepository,CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
 
 
-        $collections = $collectionsRepository->findAll();
+        $collections = $collectionsRepository->findByAllSortCountItems();
 
 
-        $items = $itemRepository->findAll();
+        $items = $itemRepository->findByAllSortDate();
         return $this->render('home.html.twig',
         ['collections' => $collections,
             'items'=> $items,

@@ -24,6 +24,22 @@ class ItemRepository extends ServiceEntityRepository
 
 
 
+    /**
+     * @return Item[] Returns an array of Item objects
+     */
+
+    public function findByAllSortDate()
+    {
+        return $this->createQueryBuilder('i')
+            ->orderBy('i.date_created', 'DESC')
+//            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
 
     /**
     * @return Item[] Returns an array of Item objects
