@@ -60,7 +60,7 @@ class VkontakteController extends AbstractController
 //            $entityManager->persist($user);
 //            $entityManager->flush();
 
-            return $this->redirectToRoute('index');
+            //return $this->redirectToRoute('index');
 
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
