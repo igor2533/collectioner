@@ -35,7 +35,7 @@
 
             <div class="col-sm-4 sm-item">
                 <a href="{{ path('view', {'slug': item.slug}) }}" class="href_item">
-                    <div class="box content col-sm-12" style="background: url('{% if item.images is not defined %}{{  item.images['0'].name }}{% else %}{{ url_not_image }}{% endif %}')no-repeat;">
+                    <div class="box content col-sm-12" style="background: url('{% if item.images is not empty %}{{  item.images['0'].name }}{% else %}{{ url_not_image }}{% endif %}')no-repeat;">
                         <div class="title_item_box col-sm-12"><span>{{ item.title }}</span></div>
                         <div class="date_item_box col-sm-12"><span>{{ item.dateCreated|date("d.m.Y") }}</span></div>
                     </div>
