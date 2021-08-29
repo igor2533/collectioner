@@ -38,7 +38,7 @@ class MyVkontakteAuthenticator extends OAuth2Authenticator
 
     public function authenticate(Request $request): PassportInterface
     {
-        $client = $this->clientRegistry->getClient('vkontakte');
+        $client = $this->clientRegistry->getClient('vkontakte_main');
         $accessToken = $this->fetchAccessToken($client);
 
         return new SelfValidatingPassport(

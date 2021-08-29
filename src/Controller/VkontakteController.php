@@ -43,7 +43,7 @@ class VkontakteController extends AbstractController
 
         /** @var \KnpU\OAuth2ClientBundle\Client\Provider\VKontakteClient $client */
         $client = $clientRegistry->getClient('vkontakte_main');
-        $user_vk = $client->fetchUser();
+        $user = $client->fetchUser();
 
 
 
@@ -58,7 +58,7 @@ class VkontakteController extends AbstractController
 
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
-            var_dump($user_vk->getCity()); die;
+            var_dump($user); die;
             // ...
         } catch (IdentityProviderException $e) {
             // something went wrong!
