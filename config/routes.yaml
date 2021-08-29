@@ -38,3 +38,4 @@ search_form_base:
     path: /search/
     controller: App\Controller\IndexController:search_form_base
 
+

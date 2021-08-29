@@ -8,7 +8,7 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         oauth:
-            id: knpu.oauth2.user_provider
+            id: knpu.oauth2.client.vkontakte_main
         database_users:
             entity: { class: App\Entity\User, property: email }
         # used to reload user from session & other features (e.g. switch_user)
@@ -21,12 +21,9 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            lazy: true
-            provider: app_user_provider
-            custom_authenticator: App\Security\LoginFormAuthenticator
-            guard:
-            custom_authenticators:
-                - App\Security\MyVkontakteAuthenticator
+#            guard:
+#                authenticators:
+#                    - App\Security\MyVkontakteAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout

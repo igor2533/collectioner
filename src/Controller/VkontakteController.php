@@ -20,7 +20,7 @@ class VkontakteController extends AbstractController
 
         // will redirect to Facebook!
         return $clientRegistry
-            ->getClient('vkontakte') // key used in config/packages/knpu_oauth2_client.yaml
+            ->getClient('vkontakte_main') // key used in config/packages/knpu_oauth2_client.yaml
             ->redirect([
                 'public_profile', 'email' // the scopes you want to access
             ]);
@@ -39,11 +39,10 @@ class VkontakteController extends AbstractController
         // leave this method blank and create a Guard authenticator
         // (read below)
 
-        /** @var \KnpU\OAuth2ClientBundle\Client\ProviderVkontakteClient $client */
-        $client = $clientRegistry->getClient('vkontakte');
+        /** @var \KnpU\OAuth2ClientBundle\Client\Provider\VKontakteClient $client */
+        $client = $clientRegistry->getClient('vkontakte_main');
 
         try {
-
             // the exact class depends on which provider you're using
             /** @var \League\OAuth2\Client\Provider\VkontakteUser $user */
             $user = $client->fetchUser();
