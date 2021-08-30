@@ -24,6 +24,7 @@ security:
             custom_authenticators:
                 - App\Security\LoginFormAuthenticator
                 - App\Security\MyVkontakteAuthenticator
+                - App\Security\MyYandexAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout

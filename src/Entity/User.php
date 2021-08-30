@@ -57,7 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column (type="string",nullable=true)
      */
-    private $vkontakteId;
+    private $yandexId;
 
     /**
      * @ORM\Column(type="json")
@@ -295,14 +295,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getVkontakteId(): ?string
+    public function getYandexId(): ?string
     {
-        return $this->vkontakteId;
+        return $this->yandexId;
     }
 
-    public function setVkontakteId(string $vkontakteId): self
+    public function setYandexId(string $yandexId): self
     {
-        $this->vkontakteId = $vkontakteId;
+        $this->yandexId = $yandexId;
 
         return $this;
     }

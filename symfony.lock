@@ -1,4 +1,7 @@
 {
+    "aego/oauth2-yandex": {
+        "version": "0.2.2"
+    },
     "cloudinary/cloudinary_php": {
         "version": "1.20.0"
     },
