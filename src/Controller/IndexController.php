@@ -149,7 +149,7 @@ class IndexController extends AbstractController
     public function items(PaginatorInterface $paginator,ItemRepository $itemRepository, Request $request){
 
 
-        $items = $itemRepository->findAll();
+        $items = $itemRepository->findByAllStatus();
         $pagination = $paginator->paginate($items,
             $request->query->getInt('page',1),6);
         return $this->render('items-page.html.twig',[

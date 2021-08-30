@@ -31,6 +31,7 @@ class ItemRepository extends ServiceEntityRepository
     public function findByAllSortDate()
     {
         return $this->createQueryBuilder('i')
+            ->orWhere('i.status = 1')
             ->orderBy('i.date_created', 'DESC')
             ->setMaxResults(6)
 //            ->setMaxResults(10)
@@ -38,6 +39,13 @@ class ItemRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByAllStatus() {
+        return $this->createQueryBuilder('i')
+            ->orWhere('i.status = 1')
+            ->orderBy('i.date_created', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
 
 
@@ -51,6 +59,7 @@ class ItemRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('i')
             ->orWhere('i.title like :val')
             ->orWhere('i.description like :val')
+            ->orWhere('i.status = 1')
             ->setParameter('val', '%'.$value.'%')
             ->leftJoin('i.comments', 'comments')
             ->orWhere('comments.description like :val')

@@ -57,6 +57,8 @@ class OdnoklassnikiController extends AbstractController
             //return $this->redirectToRoute('index');
 
 
+
+
             // do something with all this new power!
             // e.g. $name = $user->getFirstName();
             var_dump($user); die;
