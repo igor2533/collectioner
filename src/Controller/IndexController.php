@@ -356,6 +356,7 @@ class IndexController extends AbstractController
                 $entityManager->persist($item);
                 $entityManager->flush();
             }
+            return $this->redirectToRoute('index');
         }
         return $this->render('item/add_collection.html.twig', [
             'addCollectionForm' => $form->createView(),
@@ -443,6 +444,8 @@ class IndexController extends AbstractController
             $entityManager->persist($item);
             $entityManager->flush();
             return $this->redirectToRoute('index');
+
+
         }
         return $this->render('item/add.html.twig', [
             'addItemForm' => $form->createView(),
