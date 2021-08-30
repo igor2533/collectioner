@@ -41,7 +41,6 @@ class AddItemFormType extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('description', CKEditorType::class, array(
-                'attr' => array('class' => 'form-control'),
         'config' => array(
             'uiColor' => '#ffffff',
           )))
