@@ -28,6 +28,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -41,9 +42,12 @@ class AddItemFormType extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('description', TextareaType::class, array(
-        'config' => array(
-            'uiColor' => '#ffffff',
-          )))
+                'label' => 'Description',
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'label' => false,
+        ))
 
 
 //            ->add('image', FileType::class, [

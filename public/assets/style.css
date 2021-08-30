@@ -381,3 +381,8 @@ a.category_a {
 .page-link {
 
     color: #43c013;}
+
+.large-12.columns textarea {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
