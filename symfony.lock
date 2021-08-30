@@ -1,4 +1,7 @@
 {
+    "aego/oauth2-odnoklassniki": {
+        "version": "0.4.1"
+    },
     "aego/oauth2-yandex": {
         "version": "0.2.2"
     },

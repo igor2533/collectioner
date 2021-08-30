@@ -25,6 +25,7 @@ security:
                 - App\Security\LoginFormAuthenticator
                 - App\Security\MyVkontakteAuthenticator
                 - App\Security\MyYandexAuthenticator
+                - App\Security\MyOdnoklassnikiAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout

@@ -60,6 +60,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $yandexId;
 
     /**
+     * @ORM\Column (type="string",nullable=true)
+     */
+    private $odnoklassnikiId;
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -303,6 +307,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setYandexId(string $yandexId): self
     {
         $this->yandexId = $yandexId;
+
+        return $this;
+    }
+
+    public function getOdnoklassnikiId(): ?string
+    {
+        return $this->odnoklassnikiId;
+    }
+
+    public function setOdnoklassnikiId(?string $odnoklassnikiId): self
+    {
+        $this->odnoklassnikiId = $odnoklassnikiId;
 
         return $this;
     }
