@@ -81,6 +81,12 @@
                     {% else %}
                     <li class="nav-item"><a class="nav-link"  href="{{ path('app_login') }}">Login</a></li>
                         <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Register</a></li>
+                        <li class="nav-item">
+                            <form class="form-inline my-2 my-lg-0" action="{{ path('search_form_base') }}" method="get">
+                                <input class="form-control mr-sm-2" type="search" aria-label="Search" name="q">
+                            </form>
+
+                        </li>
                     {% endif %}
 
 
