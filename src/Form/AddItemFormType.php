@@ -40,7 +40,7 @@ class AddItemFormType extends AbstractType
             ->add('title', TextType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('description', CKEditorType::class, array(
+            ->add('description', TextareaType::class, array(
         'config' => array(
             'uiColor' => '#ffffff',
           )))
