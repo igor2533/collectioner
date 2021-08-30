@@ -187,7 +187,7 @@ a.badge.badge-success {
 
 /* add comment */
 .col-sm-12.comment_box {
-    padding-top: 100px;
+    padding-top: 15px;
     padding-bottom: 30px;
 }
 .col-sm-3.comment_img_user img {
@@ -236,7 +236,7 @@ footer {
 
 .col-sm-12.comment_add {
     float: left;
-    margin-top: 50px;
+    margin-top:10px;
 }
 /* end comment */
 
@@ -373,3 +373,11 @@ a.category_a {
 .col-sm-4.content_div_item>div {
     margin-top: 8px;
 }
+.page-item.active .page-link {
+
+    background-color: #43c013;
+    border-color: #43c013;
+}
+.page-link {
+
+    color: #43c013;}
