@@ -15,6 +15,7 @@
         "easycorp/easyadmin-bundle": "^3.5",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
         "j4k/oauth2-vkontakte": "^1.1",
+        "knplabs/knp-paginator-bundle": "^5.6",
         "knpuniversity/oauth2-client-bundle": "^2.8",
         "sensio/framework-extra-bundle": "^6.1",
         "speicher210/cloudinary-bundle": "^0.11.0",

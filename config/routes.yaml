@@ -7,6 +7,9 @@ view:
 collection-page:
     path: /collection/{slug}
     controller: App\Controller\IndexController:collection
+tag-page:
+    path: /tag/{slug}
+    controller: App\Controller\IndexController:tag_items
 create_item:
     path: /add_item/{id_collection}
     controller: App\Controller\IndexController:add_item
@@ -37,5 +40,12 @@ edit_gallery:
 search_form_base:
     path: /search/
     controller: App\Controller\IndexController:search_form_base
+collections-page:
+    path: /collections/
+    controller: App\Controller\IndexController:collections
+items-page:
+    path: /items/
+    controller: App\Controller\IndexController:items
+
 
 

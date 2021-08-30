@@ -72,6 +72,9 @@ class AddItemFormType extends AbstractType
                 'required' => false
             ])
 
+            ->add('year', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
 
 
            ->add('tag')

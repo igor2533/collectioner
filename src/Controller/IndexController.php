@@ -29,11 +29,13 @@ use App\Repository\ItemRepository;
 use App\Repository\CategoryRepository;
 use App\Form\UpdateImagesFormType;
 
+use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 //use Doctrine\ORM\Tools\Pagination\Paginator;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Knp\Component\Pager\PaginatorInterface;
 use PhpParser\Node\Scalar\MagicConst\File;
 use Speicher210\CloudinaryBundle\Cloudinary\Uploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -113,21 +115,66 @@ class IndexController extends AbstractController
     }
 
 
-    public function index(Request $request,CollectionsRepository $collectionsRepository,CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
+    public function index(TagRepository $tagRepository,Request $request,CollectionsRepository $collectionsRepository,CategoryRepository $categoryRepository,ItemRepository $itemRepository):Response {
 
 
         $collections = $collectionsRepository->findByAllSortCountItems();
 
+        $tags = $tagRepository->findAll();
 
         $items = $itemRepository->findByAllSortDate();
         return $this->render('home.html.twig',
         ['collections' => $collections,
             'items'=> $items,
+            'tags' => $tags
 
             ]);
 
     }
 
+    public function collections(PaginatorInterface $paginator,CollectionsRepository $collectionsRepository, Request $request){
+
+
+        $collections = $collectionsRepository->findAll();
+        $pagination = $paginator->paginate($collections,
+        $request->query->getInt('page',1),6);
+        return $this->render('collections-page.html.twig',[
+           'collections' => $pagination,
+            'count_collections' => count($collections)
+        ]);
+
+
+    }
+
+    public function items(PaginatorInterface $paginator,ItemRepository $itemRepository, Request $request){
+
+
+        $items = $itemRepository->findAll();
+        $pagination = $paginator->paginate($items,
+            $request->query->getInt('page',1),6);
+        return $this->render('items-page.html.twig',[
+            'items' => $pagination,
+            'count_items' => count($items)
+        ]);
+
+
+    }
+
+    public function tag_items(PaginatorInterface $paginator,ItemRepository $itemRepository,TagRepository $tagRepository,Request $request){
+
+        $tag = $this->find_object_one($request,$tagRepository,'title','slug');
+
+        $items = $tag->getItems();
+
+        $pagination = $paginator->paginate($items,
+        $request->query->getInt('page',1),5);
+        return $this->render('tag-page.html.twig',[
+            'items' => $items,
+        'tag' => $tag,
+        'count_items' => count($items),
+            'items_p' => $pagination
+        ]);
+    }
 
     public function collection(ItemRepository $itemRepository,CollectionsRepository $collectionsRepository,string $slug, Request $request):Response {
 

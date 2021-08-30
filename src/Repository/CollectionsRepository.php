@@ -49,7 +49,7 @@ class CollectionsRepository extends ServiceEntityRepository
 //            ->orderBy('item', 'DESC')
 
 
-
+->setMaxResults(6)
 
 //            ->setMaxResults(10)
             ->getQuery()

@@ -32,6 +32,7 @@ class ItemRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('i')
             ->orderBy('i.date_created', 'DESC')
+            ->setMaxResults(6)
 //            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
@@ -55,7 +56,7 @@ class ItemRepository extends ServiceEntityRepository
             ->orWhere('comments.description like :val')
             ->setParameter('val', '%'.$value.'%')
             ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
+//            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;

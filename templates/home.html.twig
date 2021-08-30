@@ -23,6 +23,9 @@
         {%  endfor %}
 
 
+        <div class="container these_see_div"><a href="{{ path('collections-page') }}" class="see_these">Смотреть еще</a></div>
+
+
 
     </div>
 
@@ -48,7 +51,28 @@
     </div>
 
 
-    <div class="container these_see_div"><a href="#" class="see_these">Смотреть еще</a></div>
+    <div class="container these_see_div"><a href="{{ path('items-page') }}" class="see_these">Смотреть еще</a></div>
+
+
+
+
+    <h2>Tags</h2>
+    <div class="row">
+
+
+
+        {%  for tag in tags %}
+
+            <div class="col-sm-2 sm-tag">
+                <a href="{{ path('tag-page', {'slug': tag.title}) }}" class="href_tag">
+              {{ tag.title }}
+                </a>
+            </div>
+        {%  endfor %}
+
+
+
+    </div>
 
 
 

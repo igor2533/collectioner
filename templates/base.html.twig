@@ -73,7 +73,7 @@
                        <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
                        <li class="nav-item">
                            <form class="form-inline my-2 my-lg-0" action="{{ path('search_form_base') }}" method="get">
-                               <input class="form-control mr-sm-2" type="search" aria-label="Search" name="q">
+                               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
                            </form>
 
                        </li>
@@ -83,7 +83,7 @@
                         <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Register</a></li>
                         <li class="nav-item">
                             <form class="form-inline my-2 my-lg-0" action="{{ path('search_form_base') }}" method="get">
-                                <input class="form-control mr-sm-2" type="search" aria-label="Search" name="q">
+                                <input class="form-control mr-sm-2" placeholder="Search" type="search" aria-label="Search" name="q">
                             </form>
 
                         </li>
@@ -96,16 +96,7 @@
         </nav>
     </header>
 <main>
-    <div class="wrapper col-sm-12" style="background: url('https://www.gannett-cdn.com/-mm-/6e0dabaca541644e2dfc3adf64062cc4a150f304/c=717-0-4434-2100/local/-/media/2017/11/09/USATODAY/USATODAY/636458564407784776-AP-CHURCH-SHOOTING-GUN-DEBATE-95160461.JPG?width=3200&height=1808&fit=crop&format=pjpg&auto=webp')no-repeat; padding-top: 100px;
-background-size: 100%;
-    padding-bottom: 100px;
-    text-align: center;
-    color: white;
-    background-blend-mode: multiply;
-    background-color: #0000008a;">
-        <h1>Not fixed</h1>
 
-    </div>
 <div class="container">
 
         {% block body %}{% endblock %}
@@ -121,6 +112,8 @@ background-size: 100%;
         var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
             url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
         $('select#add_item_form_tag').select2();
+        $('select#edit_item_form_tag').select2();
+
         $("input#add_item_form_images").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
         $("input#add_collections_form_image").fileinput({'showUpload':false, 'previewFileType':'any','multiple':true});
         $("input.file_upload_update").fileinput({
@@ -146,6 +139,7 @@ background-size: 100%;
         $('select#form_tag').select2();
         $('select#add_collections_form_items_undefined_tag').select2();
         $('select.my_tag_for_update').select2();
+        $('.form-group.tag_item_update select').select2();
 
 
 

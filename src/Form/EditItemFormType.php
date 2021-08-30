@@ -37,8 +37,11 @@ class EditItemFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title',TextType::class,array(
+                'attr' => ['class' => 'form-control'],
+            ))
             ->add('description', CKEditorType::class, array(
+                'attr' => ['class' => 'form-control'],
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )))
