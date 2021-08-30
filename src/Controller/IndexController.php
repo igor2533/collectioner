@@ -228,12 +228,12 @@ class IndexController extends AbstractController
 
     }
 
-    public function remove_collection(Request $request) {
+    public function remove_collection(Request $request,UserInterface $user) {
 
 
         $repository = $this->em()->getRepository(Collections::class);
         $this->remove_object($request,$repository);
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('user_items',['author'=> $user->getId()]);
 
     }
 

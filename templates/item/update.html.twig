@@ -3,7 +3,7 @@
 {% block title %}Add Item{% endblock %}
 
 {% block body %}
-
+<div class="container container_edit_c">
     <h1>Update Item</h1>
     {% form_theme updateForm 'foundation_5_layout.html.twig' %}
     {{ form_start(updateForm,{'multipart': true}) }}
@@ -42,112 +42,13 @@
 
 
 </ul>
-    <div class="row">
-        <a href="{{ path('create_item',{'id_collection': collection.id})}}">Добавить item</a>
+    <div class="row add_item_cont">
+        <a class="btn btn-success" href="{{ path('create_item',{'id_collection': collection.id})}}">Добавить item</a>
     </div>
 
-{#    <script>#}
-{#        $(document).ready(function() {#}
-{#            var urlc = '{{ collection.image }}';#}
-{#            $("input.file-caption-name").fileinput({#}
-{#                // 'showUpload':false,#}
-{#                // 'previewFileType':'any',#}
-{#                'multiple': true,#}
 
-{#                initialPreview: [urlc],#}
-{#                initialPreviewAsData: true,#}
-{#                initialPreviewConfig: [#}
-{#                    {#}
-{#                        caption: "Moon.jpg",#}
-{#                        downloadUrl: urlc,#}
-{#                        description: "<h5>The Moon</h5>The Moon is Earth's only natural satellite and the fifth largest moon in the solar system. The Moon's distance from Earth is about 240,000 miles (385,000 km).",#}
-{#                        size: 930321,#}
-{#                        width: "120px",#}
-{#                        key: 1#}
-{#                    },#}
-{#                    {#}
-{#                        caption: "Earth.jpg",#}
-{#                        downloadUrl: urlc,#}
-{#                        description: "<h5>The Earth</h5> The Earth is the 3<sup>rd</sup> planet from the Sun and the only astronomical object known to harbor and support life. About 29.2% of Earth's surface is land and remaining 70.8% is covered with water.",#}
-{#                        size: 1218822,#}
-{#                        width: "120px",#}
-{#                        key: 2#}
-{#                    }#}
-{#                ],#}
-{#                deleteUrl: "/site/file-delete",#}
-{#                overwriteInitial: false,#}
-{#                maxFileSize: 100,#}
-{#                initialCaption: "The Moon and the Earth"#}
-
-
-{#            });#}
-{#        });#}
-
-{#    </script>#}
-
-
-
-{#    <div class="items row" data-prototype="{{ form_widget(updateForm.items.vars.prototype)|e }}">#}
-
-
-{#    </div>#}
-
-
-
-
-
-
-
-{#    <div class="form-group">#}
-{#        {{ form_label(updateForm.items) }}#}
-{#        {{ form_errors(updateForm.items) }}#}
-
-{#        <ul>#}
-
-{#            {% for item in updateForm.items %}#}
-
-{#                <li>{{ form_row(item.title) }}</li>#}
-{#                <li>{{ form_row(item.description) }}</li>#}
-
-{#                <li>{{ form_row(item.images,#}{#}#}
-{#                            attr: {'class': 'file_upload_update'},#}
-{#                            label: false,#}
-{#                            placeholder: 'Title'#}
-{#                        }) }}#}
-
-{#                </li>#}
-{#                <li>{{ form_row(item.tag,{#}
-{#                        attr: {'class': 'my_tag_for_update'},#}
-{#                        label: false,#}
-{#                        placeholder: 'Title'#}
-{#                    }) }}#}
-
-{#                </li>#}
-
-
-
-{#            {% endfor %}#}
-
-
-
-
-
-{#        </ul>#}
-
-
-
-{#    </div>#}
-
-
-
-
-{#    <div class="form-group">#}
-{#        {{ form_row(updateForm.tag,{#}
-
-{#        }) }}#}
-{#    </div>#}
     <div class="col-sm-4 form_left">
-        <button type="submit" class="btn btn-primary">Uodate</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </div>
 
 
@@ -163,19 +64,6 @@
 
 
 
-
-{#    {% form_theme addTagForm 'foundation_5_layout.html.twig' %}#}
-{#    {{ form_start(addTagForm) }}#}
-
-
-{#    <div class="form-group">#}
-
-{#            {{ form_row(addTagForm.title) }}#}
-{#        <button type="submit" class="btn btn-primary add_slug_btn">Добавить</button>#}
-{#    </div>#}
-
-
-{#    {{ form_end(addTagForm) }}#}
 
 
     <script>
@@ -249,7 +137,7 @@
         addTagLink.addEventListener("click", addFormToCollection)
     </script>
 
-
+</div>
 {% endblock %}
 
 

@@ -301,3 +301,11 @@ form.form-inline.my-2.my-lg-0 {
     width: 100%;
     margin-bottom: 41px;
 }
+
+.container.container_edit_c div.form-group {
+    margin: 19px;
+}
+.row.add_item_cont a {
+    width: 144px;
+    margin: 0 auto;
+}
