@@ -22,6 +22,7 @@ security:
             security: false
         main:
             custom_authenticators:
+                - App\Security\LoginFormAuthenticator
                 - App\Security\MyVkontakteAuthenticator
             logout:
                 path: app_logout
