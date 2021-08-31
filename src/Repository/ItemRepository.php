@@ -59,7 +59,7 @@ class ItemRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('i')
             ->orWhere('i.title like :val')
             ->orWhere('i.description like :val')
-            ->orWhere('i.status = 1')
+            ->andWhere('i.status = 1')
             ->setParameter('val', '%'.$value.'%')
             ->leftJoin('i.comments', 'comments')
             ->orWhere('comments.description like :val')

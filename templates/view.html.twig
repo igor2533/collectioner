@@ -55,7 +55,7 @@
 
         </div>
         {% endfor %}
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="col-sm-12 comment_add col-12">
 
 
@@ -86,7 +86,7 @@
 
         </div>
     </div>
-
+ {% endif %}
 
 
 
