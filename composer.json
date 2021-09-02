@@ -27,6 +27,7 @@
         "symfony/flex": "^1.3.1",
         "symfony/form": "5.3.*",
         "symfony/framework-bundle": "5.3.*",
+        "symfony/mercure-bundle": "^0.3.2",
         "symfony/mime": "5.3.*",
         "symfony/polyfill-apcu": "^1.23",
         "symfony/proxy-manager-bridge": "5.3.*",

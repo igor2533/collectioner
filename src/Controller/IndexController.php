@@ -46,6 +46,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Update;
+
+
 
 class IndexController extends AbstractController
 {
@@ -57,6 +61,20 @@ class IndexController extends AbstractController
     public function em() {
         $em = $this->getDoctrine()->getManager();
         return $em;
+    }
+
+
+
+    public function publish(HubInterface $hub): Response
+    {
+        $update = new Update(
+            'http://localhost:8000',
+            json_encode(['status' => 'OutOfStock'])
+        );
+
+        $hub->publish($update);
+
+        return new Response('published!');
     }
 
 
@@ -286,7 +304,15 @@ class IndexController extends AbstractController
 
 
 
-    public function edit(ItemRepository $itemRepository ,Request $request,UserInterface $user) {
+    public function edit(ItemRepository $itemRepository ,Request $request,UserInterface $user,HubInterface $hub) {
+
+
+        $update = new Update(
+            'https://sheltered-river-18608.herokuapp.com/commande/recapitulatif',
+            json_encode(['status' => 'Commande'])
+        );
+
+        $hub->publish($update);
 
 
         $em = $this->getDoctrine()->getManager();
