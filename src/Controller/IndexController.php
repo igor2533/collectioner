@@ -44,6 +44,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\PublisherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Mercure\HubInterface;
@@ -65,19 +66,17 @@ class IndexController extends AbstractController
     }
 
 
+    public function push(Request $request, PublisherInterface $publisher) {
 
-    public function publish(HubInterface $hub): Response
-    {
-        $update = new Update(
-            'https://sheltered-river-18608.herokuapp.com/items',
-            json_encode(['status' => 'OutOfStock'])
-        );
+        $update = new Update('/chat', json_encode([
+            'message' => 'Hello world'
+        ]));
 
-        $hub->publish($update);
+        $publisher($update);
 
-        return new Response('published!');
+        return $this->json('Done');
+
     }
-
 
 
     public function find_object_one($request,$repository,$key,$get_key) {

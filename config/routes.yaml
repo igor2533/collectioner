@@ -46,6 +46,9 @@ collections-page:
 items-page:
     path: /items/
     controller: App\Controller\IndexController:items
+push:
+    path: /push
+    controller: App\Controller\IndexController::push
 
 
 
