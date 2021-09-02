@@ -308,7 +308,7 @@ class IndexController extends AbstractController
 
 
         $update = new Update(
-            'https://sheltered-river-18608.herokuapp.com/commande/recapitulatif',
+            'https://sheltered-river-18608.herokuapp.com/hub',
             json_encode(['status' => 'Commande'])
         );
 
