@@ -51,6 +51,7 @@ use Symfony\Component\Mercure\Update;
 
 
 
+
 class IndexController extends AbstractController
 {
 
@@ -68,7 +69,7 @@ class IndexController extends AbstractController
     public function publish(HubInterface $hub): Response
     {
         $update = new Update(
-            'http://localhost:8000',
+            'https://sheltered-river-18608.herokuapp.com/items',
             json_encode(['status' => 'OutOfStock'])
         );
 
