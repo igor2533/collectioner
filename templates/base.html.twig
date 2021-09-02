@@ -154,9 +154,9 @@
         });
 
 
-        const eventSource = new EventSource('https://sheltered-river-18608.herokuapp.com?topic=' + encodeURIComponent('https://sheltered-river-18608.herokuapp.com/hub'));
+        const eventSource = new EventSource('https://sheltered-river-18608.herokuapp.com/items?topic=' + encodeURIComponent('https://sheltered-river-18608.herokuapp.com/items'));
         eventSource.onmessage = event => {
-            // Will be called every time an update is published by the servejr
+            // Will be called every time an update is published by the server
             console.log(JSON.parse(event.data));
         }
 
