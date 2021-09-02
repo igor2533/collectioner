@@ -156,7 +156,7 @@
 
         const eventSource = new EventSource('https://sheltered-river-18608.herokuapp.com?topic=' + encodeURIComponent('https://sheltered-river-18608.herokuapp.com/hub'));
         eventSource.onmessage = event => {
-            // Will be called every time an update is published by the server
+            // Will be called every time an update is published by the servejr
             console.log(JSON.parse(event.data));
         }
 
