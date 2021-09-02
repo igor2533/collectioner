@@ -154,7 +154,7 @@
         });
 
 
-        const eventSource = new EventSource('https://sheltered-river-18608.herokuapp.com/new/item?topic=' + encodeURIComponent('https://sheltered-river-18608.herokuapp.com/hub'));
+        const eventSource = new EventSource('https://sheltered-river-18608.herokuapp.com?topic=' + encodeURIComponent('https://sheltered-river-18608.herokuapp.com/hub'));
         eventSource.onmessage = event => {
             // Will be called every time an update is published by the server
             console.log(JSON.parse(event.data));
