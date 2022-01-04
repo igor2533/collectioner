@@ -386,3 +386,11 @@ a.category_a {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.messages>div {
+    width: 200px;
+    margin: 0 auto;
+    font-weight: bold;
+    color: #2f352f;
+    background: #96d096;
+}

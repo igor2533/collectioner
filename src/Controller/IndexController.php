@@ -44,12 +44,18 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\Publisher;
 use Symfony\Component\Mercure\PublisherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Mercure\HubInterface;
+
+use Symfony\Component\Mercure\Hub;
+use Symfony\Component\Mercure\Jwt\StaticTokenProvider;
 use Symfony\Component\Mercure\Update;
 
+use Goutte\Client;
+use Symfony\Component\HttpClient\HttpClient;
 
 
 
@@ -66,17 +72,6 @@ class IndexController extends AbstractController
     }
 
 
-    public function push(Request $request, PublisherInterface $publisher) {
-
-        $update = new Update('/chat', json_encode([
-            'message' => 'Hello world'
-        ]));
-
-        $publisher($update);
-
-        return $this->json('Done');
-
-    }
 
 
     public function find_object_one($request,$repository,$key,$get_key) {
@@ -307,12 +302,10 @@ class IndexController extends AbstractController
     public function edit(ItemRepository $itemRepository ,Request $request,UserInterface $user,HubInterface $hub) {
 
 
-        $update = new Update(
-            'https://sheltered-river-18608.herokuapp.com/items/',
-            json_encode(['status' => 'Commande'])
-        );
+        $update = new Update(  'https://localhost:8000/.well-known/mercure',
+            json_encode(['status' => 'OutOfStock']));
 
-        $hub->publish($update);
+ $hub->publish($update);
 
 
         $em = $this->getDoctrine()->getManager();
@@ -330,6 +323,7 @@ class IndexController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+            $this->addFlash('success', 'Item has been updated ');
         }
         return $this->render('/item/update_item.html.twig',
             [

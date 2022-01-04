@@ -13,6 +13,7 @@
                 float: left;
                 margin: 8px;
                 text-align: center;
+                
             }
             .col-sm-12.view img {
                 width: 442px;
@@ -154,12 +155,35 @@
         });
 
 
-        const eventSource = new EventSource('https://sheltered-river-18608.herokuapp.com/items?topic=' + encodeURIComponent('https://sheltered-river-18608.herokuapp.com/items'));
-        eventSource.onmessage = event => {
-            // Will be called every time an update is published by the server
-            console.log(JSON.parse(event.data));
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/discover').then((result)=>{
+                const hubUrl = result.headers.get('Link').match(/<([^>]+)>;\s+rel=(?:mercure|"[^"]*mercure[^"]*")/)[1];
+                const hub = new URL(hubUrl, window.origin);
 
+                hub.searchParams.append('topic',  `{{ app.user.username }}` );
+                const eventSource = new EventSource(hub,{
+                    withCredentials: false
+                });
+                console.log(hub);
+                eventSource.onmessage = (event) => {
+                    console.log(event);
+
+
+                }
+            });
+
+
+        });
 
     });
 </script>
+<div class="messages">
+{% for label, messages in app.flashes(['success', 'warning']) %}
+{% for message in messages %}
+    <div class="flash-{{ label }} alert alert-success" role="alert">
+        {{ message }}
+
+    </div>
+{% endfor %}
+{% endfor %}
+</div>

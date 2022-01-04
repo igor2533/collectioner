@@ -103,6 +103,9 @@
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
+    "fabpot/goutte": {
+        "version": "v4.0.1"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
@@ -217,6 +220,9 @@
     "symfony/asset": {
         "version": "v5.3.4"
     },
+    "symfony/browser-kit": {
+        "version": "v5.3.4"
+    },
     "symfony/cache": {
         "version": "v5.3.4"
     },
@@ -238,6 +244,9 @@
             "./bin/console"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v5.3.4"
+    },
     "symfony/dependency-injection": {
         "version": "v5.3.4"
     },
@@ -246,6 +255,9 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v5.3.4"
+    },
+    "symfony/dom-crawler": {
+        "version": "v5.3.7"
     },
     "symfony/dotenv": {
         "version": "v5.3.6"

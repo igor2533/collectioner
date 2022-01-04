@@ -15,6 +15,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.9",
         "easycorp/easyadmin-bundle": "^3.5",
+        "fabpot/goutte": "^4.0",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
         "j4k/oauth2-vkontakte": "^1.1",
         "knplabs/knp-paginator-bundle": "^5.6",
