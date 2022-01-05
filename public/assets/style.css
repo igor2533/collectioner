@@ -1,14 +1,27 @@
+
+
+@font-face{
+
+    font-family: 'Comic';
+    
+    /* src: url('https://localhost:8000/assets/Comic_CAT.otf'); */
+    src: url('http://sheltered-river-18608.herokuapp.com/assets/Comic_CAT.otf');
+}
+
+a,span {
+    font-family: 'Comic';
+}
 body{
 	   background: #f2fcff;
 	  
     }
 
 nav.navbar {
-    background-color: #43c013!important;
+    background-color: #ffffff!important;
 }
 
 nav.navbar.navbar-expand-lg a {
-    color: white!important;
+    color: rgb(0, 0, 0)!important;
 }
 button.btn.btn-outline-success.my-2.my-sm-0 {
     background: #ffffff00;
@@ -17,16 +30,16 @@ button.btn.btn-outline-success.my-2.my-sm-0 {
     border: solid 1px white;
 }
 input.form-control.mr-sm-2::placeholder {
-    color: white;
+    color: black;
     font-weight: bold;
 }
 input.form-control.mr-sm-2 {
     background: transparent;
-    border: solid 1px white;
-    color: white!important;
+    border: solid 1px black;
+    color: black!important;
 }
 .navbar-light .navbar-nav .nav-link:hover {
-    color: white!important;
+    color: rgb(76, 9, 201)!important;
 }
     img.d-block.w-100 {
     max-height: 420px;
@@ -361,8 +374,8 @@ span.date_a,.date_item_box_author.col-sm-12>a {
 a.category_a {
     margin-left: 4px;
     text-decoration: none;
-    background: #5bcf2f;
-    color: white;
+    
+    color: black;
     font-weight: bold;
     padding-left: 4px;
     padding-right: 4px;
@@ -393,4 +406,82 @@ a.category_a {
     font-weight: bold;
     color: #2f352f;
     background: #96d096;
+}
+
+.col-md-6.lzes>div {
+    float: left;
+}
+.lzes a div {
+
+    background-size: cover!important;
+    background-position-x: center!important;
+    height: calc(50vh - 28px);
+}
+div.zak {
+    margin-top:0px!important;padding: 0;
+}
+div.lzes {
+    margin-top:0px!important;padding: 0;
+}
+div.lefts {
+    margin-top:0px!important;padding: 0;
+}
+div.lefts a div {
+    background: url('https://mebel169.ru/images/contents/articles/tochechnye-svetilniki-roskosh-ili-vygodnoe-priobretenie-341271-article-content-main.jpg');
+    background-size: cover!important;
+    background-position-x: center!important;
+    height: calc(100vh - 56px);
+    text-align: center;
+    display: grid;
+    justify-content: space-evenly;
+    align-content: center;
+    color: white;
+    font-size: 54px;
+    background-color: #00000063!important;
+    background-blend-mode: multiply;
+}
+div.row {
+    --bs-gutter-x: none!important;
+}
+.col-md-6.col-sm-4.col-xs-6.lefts a {
+    text-decoration: none;
+}
+
+.lzes div.sec1 a div  {
+    background: url('https://ais.by/sites/ais.by/files/styles/colorbox/public/fototxt14/1594125866/1/21.jpg?itok=NiRISLej')no-repeat;
+}
+.lzes div.sec2 a div  {
+    background: url('https://lzei.by/upload/iblock/8fd/8fd21ceb623487b1df1c16ea3dd357b1.jpg')no-repeat;
+}
+.lzes div.sec3 a div  {
+    background: url('https://micro-climat.by/ckfinder2.4/userfiles/images/2(2).jpg')no-repeat;
+}
+.lzes div.sec4 a div  {
+    background: url('https://www.belincasgroup.by/local/assets/images/bg/vacancy.png')no-repeat;
+}
+.col-md-6.zak a {
+    text-decoration: none;
+}
+
+.col-md-6.lzes a div {
+    text-align: center;
+    display: grid;
+    align-content: center;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+.col-md-6.zak a>div {
+    background-blend-mode: multiply;
+    background-color: #0000005c!important;
+}
+
+.col-md-6.col-sm-4.col-xs-6.lefts span {
+    text-transform: uppercase;
+    line-height: 76px;
+    font-weight: bold;
+}
+
+a.navbar-brand img {
+    width: 100px;
 }

@@ -47,7 +47,7 @@ class MercureCommand extends Command
     }
 
     protected function configure(): void
-    {я
+    {
         $this
             ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
             ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')

@@ -4,8 +4,8 @@ index:
 view:
     path: /item/{slug}
     controller: App\Controller\IndexController:show
-collection-page:
-    path: /collection/{slug}
+category:
+    path: /category/{slug}
     controller: App\Controller\IndexController:collection
 tag-page:
     path: /tag/{slug}
@@ -41,7 +41,7 @@ search_form_base:
     path: /search/
     controller: App\Controller\IndexController:search_form_base
 collections-page:
-    path: /collections/
+    path: /catalog/
     controller: App\Controller\IndexController:collections
 items-page:
     path: /items/

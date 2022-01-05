@@ -17,7 +17,7 @@
 
         <div class="col-sm-4 content_div_item">
             <div class="title_item_box_black col-sm-12"><span>{{ item.title }}</span></div>
-            <div class="date_item_box_black col-sm-12"><span>Коллекция:</span><a class="category_a" href="{{ path('collection-page', {'slug': item.collection.slug}) }}">{{ item.collection.title }}</a></div>
+            <div class="date_item_box_black col-sm-12"><span>Коллекция:</span><a class="category_a" href="{{ path('category', {'slug': item.collection.slug}) }}">{{ item.collection.title }}</a></div>
 
             <div class="date_item_box_black col-sm-12">Опубликовано: <span class="date_a">{{ item.dateCreated|date("d.m.Y") }}</span></div>
             <div class="date_item_box_author col-sm-12"><span>Автор: </span><a href="{{ path('user_items', {'author': item.author.id}) }}">{{ item.author }}</a></div>

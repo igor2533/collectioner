@@ -2,19 +2,58 @@
 {% block body %}
 {% set url_not_image = 'https://thumbs.dreamstime.com/b/no-angry-person-mosaic-grunge-not-available-stamp-seal-lines-mosaic-no-angry-person-pictogram-red-not-available-seal-171894178.jpg' %}
 
+<style>
+    @media (min-width:1400px) {
+        .container {
+            max-width: 100%;
+        padding: 0;
+    }
+    div.colles {
+        max-width:1320px!important;
+        margin: 0 auto;
+    }
+    }
+    @media (min-width:1200px) {
+        .container {
+            max-width: 100%;
+        padding: 0;
+    }
+    div.colles {
+        max-width:1140px!important;
+        margin: 0 auto;
+    }
+    }
+    h1.title_collection_page {
+    text-align: center;
+    font-family: 'Comic';
+
+}
+.container.back_catalog {
+    background-color: #00000054!important;
+    background-blend-mode: multiply;
+    background-size: cover!important;
+    display: grid;
+    align-content: center;
+    height: 300px;
+    background-repeat: no-repeat;
+    background: url('https://visionlighting.ua/wp-content/uploads/2018/12/trekovye-svetilniki-kak-osnovnoj-istochnik-sveta.jpg');
+    color: white;
+}
+    </style>
 
 
-<h1 class="title_collection_page">Все коллекции ({{ count_collections }})</h1>
-    <div class="row">
+<div class="container back_catalog"><h1 class="title_collection_page">Каталог ({{ count_collections }})</h1> </div>
+
+    <div class="row colles">
 
 
         {%  for collection in collections %}
 
             <div class="col-sm-4 sm-item">
-                <a href="{{ path('collection-page', {'slug': collection.slug}) }}" class="href_item">
+                <a href="{{ path('category', {'slug': collection.slug}) }}" class="href_item">
                     <div class="box content col-sm-12" style="background: url('{% if collection.image is not empty %}{{  collection.image }}{% else %}{{ url_not_image }}{% endif %}')no-repeat;">
                         <div class="title_item_box col-sm-12"><span>{{ collection.title }}</span></div>
-                        <div class="date_item_box col-sm-12"><span>{{ collection.dateCreated|date("d.m.Y") }}</span></div>
+                        <!-- <div class="date_item_box col-sm-12"><span>{{ collection.dateCreated|date("d.m.Y") }}</span></div> -->
                     </div>
                 </a>
             </div>

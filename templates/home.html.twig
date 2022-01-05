@@ -2,77 +2,98 @@
 {% block body %}
 {% set url_not_image = 'https://thumbs.dreamstime.com/b/no-angry-person-mosaic-grunge-not-available-stamp-seal-lines-mosaic-no-angry-person-pictogram-red-not-available-seal-171894178.jpg' %}
 
+<style>
+@media (min-width:1400px) {
+    .container {
+        max-width: 100%;
+    padding: 0;
+}
+}
+@media (min-width:1200px) {
+    .container {
+        max-width: 100%;
+    padding: 0;
+}
+}
+</style>
+<div class="row sec"> 
+    <div class="col-md-6 col-sm-4 col-xs-6 lefts">
+       <a href="#"><div>
+           
+   <span>Лидский завод электроизделий</span>
+    <span>Производство светотехники</span></br>
+   
+    </div> </a>
+    </div>
+   
+
+   
+    <div class="col-md-6 lzes">
+
+
+    <div class="col-md-6 zak sec1">
+        <a href="/catalog/"><div> <span>Каталог</span></br></div> </a>
+     </div>
+     <div class="col-md-6 zak sec2">
+        <a href="#"><div><span>Портфолио</span></br> </div> </a>
+     </div>
+     
+     <div class="col-md-6 zak sec3">
+        <a href="#"><div><span>Новости</span></br> </div> </a>
+     </div>
+     
+     <div class="col-md-6 zak sec4">
+        <a href="#"><div><span>Вакансии</span></br> </div> </a>
+     </div>
+     
 
 
 
-    <h2>Последние Коллекции</h2>
-    <div class="row">
 
 
 
-        {%  for collection in collections %}
+    </div>
 
-        <div class="col-sm-4 sm-item">
-            <a href="{{ path('collection-page', {'slug': collection.slug}) }}" class="href_item">
-                <div class="box content col-sm-12" style="background: url('{% if collection.image is not empty %}{{  collection.image }}{% else %}{{ url_not_image }}{% endif %}')no-repeat;">
-                    <div class="title_item_box col-sm-12"><span>{{ collection.title }}</span></div>
-                    <div class="date_item_box col-sm-12"><span>{{ collection.dateCreated|date("d.m.Y") }}</span></div>
-                </div>
-            </a>
+
+
+
+  
+
+   
+</div>
+
+
+
+<div class="container zlot">
+
+<div class="col-sm-4">
+<div><span>Директор:</span></div>
+<div><span>+375(29)336-55-55</span></div>
+<div><span>Директор:</span></div>
+<div><span>+375(29)336-55-55</span></div>
+<div><span>Директор:</span></div>
+<div><span>+375(29)336-55-55</span></div>
+</div>
+
+
+<div class="col-sm-4">
+    <div><span>Директор:</span></div>
+    <div><span>+375(29)336-55-55</span></div>
+    <div><span>Директор:</span></div>
+    <div><span>+375(29)336-55-55</span></div>
+    <div><span>Директор:</span></div>
+    <div><span>+375(29)336-55-55</span></div>
+    </div>
+    
+    <div class="col-sm-4">
+        <div><span>Директор:</span></div>
+        <div><span>+375(29)336-55-55</span></div>
+        <div><span>Директор:</span></div>
+        <div><span>+375(29)336-55-55</span></div>
+        <div><span>Директор:</span></div>
+        <div><span>+375(29)336-55-55</span></div>
         </div>
-        {%  endfor %}
-
-
-        <div class="container these_see_div"><a href="{{ path('collections-page') }}" class="see_these">Смотреть еще</a></div>
-
-
-
-    </div>
-
-    <h2>Последние items</h2>
-    <div class="row">
-
-
-
-        {%  for item in items %}
-
-            <div class="col-sm-4 sm-item">
-                <a href="{{ path('view', {'slug': item.slug}) }}" class="href_item">
-                    <div class="box content col-sm-12" style="background: url('{% if item.images is not empty %}{{  item.images['0'].name }}{% else %}{{ url_not_image }}{% endif %}')no-repeat;">
-                        <div class="title_item_box col-sm-12"><span>{{ item.title }}</span></div>
-                        <div class="date_item_box col-sm-12"><span>{{ item.dateCreated|date("d.m.Y") }}</span></div>
-                    </div>
-                </a>
-            </div>
-        {%  endfor %}
-
-
-
-    </div>
-
-
-    <div class="container these_see_div"><a href="{{ path('items-page') }}" class="see_these">Смотреть еще</a></div>
-
-
-
-
-    <h2>Tags</h2>
-    <div class="row">
-
-
-
-        {%  for tag in tags %}
-
-            <div class="col-sm-2 sm-tag">
-                <a href="{{ path('tag-page', {'slug': tag.title}) }}" class="href_tag">
-              {{ tag.title }}
-                </a>
-            </div>
-        {%  endfor %}
-
-
-
-    </div>
+</div>
 
 
 

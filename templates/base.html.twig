@@ -13,7 +13,7 @@
                 float: left;
                 margin: 8px;
                 text-align: center;
-                
+
             }
             .col-sm-12.view img {
                 width: 442px;
@@ -36,8 +36,8 @@
         </style>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <link href="https://sheltered-river-18608.herokuapp.com/assets/style.css" rel="stylesheet">
-{#        <link href="https://localhost:8000/assets/style.css" rel="stylesheet">#}
+       <link href="https://sheltered-river-18608.herokuapp.com/assets/style.css" rel="stylesheet">
+   <!-- <link href="https://localhost:8000/assets/style.css" rel="stylesheet">-->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -61,7 +61,7 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('index') }}">Collections ^_^</a>
+            <a class="navbar-brand" href="{{ path('index') }}"><img src="https://lzei.by/upload/LedLida%20%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF%20%D1%81%20%D1%82%D0%B5%D0%BD%D1%8F%D0%BC%D0%B8%20(png).png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -81,8 +81,12 @@
                        </li>
 
                     {% else %}
-                    <li class="nav-item"><a class="nav-link"  href="{{ path('app_login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link"  href="{{ path('app_login') }}">Вход</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Регистрация</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Предприятие</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Каталог</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Проекты</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="{{ path('app_register') }}">Контакты</a></li>
                         <li class="nav-item">
                             <form class="form-inline my-2 my-lg-0" action="{{ path('search_form_base') }}" method="get">
                                 <input class="form-control mr-sm-2" placeholder="Search" type="search" aria-label="Search" name="q">
@@ -99,7 +103,7 @@
     </header>
 <main>
 
-<div class="container">
+<div class="container" >
 
         {% block body %}{% endblock %}
 </div>
@@ -155,25 +159,6 @@
         });
 
 
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('/discover').then((result)=>{
-                const hubUrl = result.headers.get('Link').match(/<([^>]+)>;\s+rel=(?:mercure|"[^"]*mercure[^"]*")/)[1];
-                const hub = new URL(hubUrl, window.origin);
-
-                hub.searchParams.append('topic',  `{{ app.user.username }}` );
-                const eventSource = new EventSource(hub,{
-                    withCredentials: false
-                });
-                console.log(hub);
-                eventSource.onmessage = (event) => {
-                    console.log(event);
-
-
-                }
-            });
-
-
-        });
 
     });
 </script>
