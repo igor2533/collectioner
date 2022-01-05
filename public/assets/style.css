@@ -4,8 +4,8 @@
 
     font-family: 'Comic';
     
-    src: url('https://localhost:8000/assets/Comic_CAT.otf');
-    /* src: url('http://sheltered-river-18608.herokuapp.com/assets/Comic_CAT.otf'); */
+    /* src: url('https://localhost:8000/assets/Comic_CAT.otf'); */
+    src: url('http://sheltered-river-18608.herokuapp.com/assets/Comic_CAT.otf');
 }
 
 a,span {
