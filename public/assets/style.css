@@ -189,7 +189,7 @@ a.badge.badge-success:hover {
     color:white;
 }
 a.badge.badge-success {
-    background: #43c013;
+    background: #287dbb;
     text-decoration: none;
     font-size: 13px;
     margin-top: 8px;
@@ -490,4 +490,11 @@ a.navbar-brand img {
     height: 230px;
     display: grid;
     align-content: space-around;
+}
+.description_item_box_black.col-sm-12 {
+    margin-top: 30px;
+}
+
+.col-sm-4.content_div_item {
+    padding-left: 40px;
 }
