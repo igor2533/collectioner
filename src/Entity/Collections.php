@@ -50,6 +50,11 @@ class Collections
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToOne (targetEntity="App\Entity\Collections", inversedBy="collections")
+     */
+    private $collection;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -168,6 +173,18 @@ class Collections
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getCollection(): ?Collections
+    {
+        return $this->collection;
+    }
+
+    public function setCollection(?Collections $collection): self
+    {
+        $this->collection = $collection;
 
         return $this;
     }

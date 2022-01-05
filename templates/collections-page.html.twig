@@ -38,7 +38,21 @@
     background-repeat: no-repeat;
     background: url('https://visionlighting.ua/wp-content/uploads/2018/12/trekovye-svetilniki-kak-osnovnoj-istochnik-sveta.jpg');
     color: white;
+    margin-bottom: 0px!important;
 }
+
+.sm-item {
+    padding-top: 0px!important;
+}
+.row.colles {
+    max-width: 100%!important;
+}
+@media (max-width:989px) {
+    .container {max-width: 100%; padding: 0!important;}
+   
+}
+
+
     </style>
 
 
@@ -49,7 +63,7 @@
 
         {%  for collection in collections %}
 
-            <div class="col-sm-4 sm-item">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 sm-item">
                 <a href="{{ path('category', {'slug': collection.slug}) }}" class="href_item">
                     <div class="box content col-sm-12" style="background: url('{% if collection.image is not empty %}{{  collection.image }}{% else %}{{ url_not_image }}{% endif %}')no-repeat;">
                         <div class="title_item_box col-sm-12"><span>{{ collection.title }}</span></div>

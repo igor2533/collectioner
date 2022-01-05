@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use App\Form\AddItemFormType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -47,6 +48,7 @@ class AddCollectionsFormType extends AbstractType
                 'required' => false
             ])
 
+        
             ->add('items', CollectionType::class, [
                 'entry_type' => AddItemFormType::class,
                 'allow_add'    => true,

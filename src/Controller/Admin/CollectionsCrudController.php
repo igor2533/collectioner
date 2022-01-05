@@ -40,7 +40,7 @@ class CollectionsCrudController extends AbstractCrudController
             TextField::new('title'),
 
             AssociationField::new('author'),
-
+            AssociationField::new('collection'),
 
         ];
     }
